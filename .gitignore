@@ -1,0 +1,16 @@
+# mdBook build output (rebuilt by CI)
+**/book/build/
+
+# Typst build artifacts
+*.pdf
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
