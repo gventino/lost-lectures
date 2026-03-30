@@ -4,6 +4,10 @@
 # Typst build artifacts
 *.pdf
 
+# Copilot instructions and prompts (local only)
+.github/instructions/
+.github/prompts/
+
 # OS files
 .DS_Store
 Thumbs.db
