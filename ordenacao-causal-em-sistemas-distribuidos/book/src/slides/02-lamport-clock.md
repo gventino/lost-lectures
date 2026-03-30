@@ -1,4 +1,4 @@
-# Módulo 02 — Lamport Clock
+# Módulo 02: Lamport Clock
 
 ---
 
@@ -13,17 +13,17 @@ propriedades e limitações.
 
 Um **contador monotônico** (inteiro que só cresce) por processo.
 
-- Não mede tempo real — mede **ordem lógica**
+- Não mede tempo real - mede **ordem lógica**
 - Garante: se `a → b`, então `C(a) < C(b)`
 - **Não** garante o inverso: `C(a) < C(b)` não significa que `a → b`
 
-> Referência: Lamport, L. (1978), Seção 2 — "The Partial Ordering", pp. 559–560.
+> Referência: Lamport, L. (1978), Seção 2 - "The Partial Ordering", pp. 559–560.
 
 ---
 
 ## As três regras (do paper original)
 
-### Regra 1 — Evento interno
+### Regra 1: Evento interno
 
 Antes de qualquer evento, incrementa o clock.
 
@@ -31,7 +31,7 @@ Antes de qualquer evento, incrementa o clock.
 t ← t + 1
 ```
 
-### Regra 2 — Envio de mensagem
+### Regra 2: Envio de mensagem
 
 Incrementa o clock e anexa o valor à mensagem.
 
@@ -40,7 +40,7 @@ t ← t + 1
 enviar(mensagem, t)
 ```
 
-### Regra 3 — Recebimento de mensagem
+### Regra 3: Recebimento de mensagem
 
 Ao receber uma mensagem com timestamp `t_msg`:
 
@@ -76,7 +76,7 @@ B → C: `C(B_send) = 5 < C(C_receive) = 6` Sim
 
 ---
 
-## Pseudocódigo — Estrutura
+## Pseudocódigo: Estrutura
 
 ```
 estrutura LamportClock:
@@ -92,7 +92,7 @@ estrutura LamportTimestamp:
 
 ---
 
-## Pseudocódigo — Operações
+## Pseudocódigo: Operações
 
 ```
 função NOVO_CLOCK(id_nó):
@@ -113,7 +113,7 @@ função RECEBER(clock, timestamp):
 
 ---
 
-## Timestamp — Serialização e ordenação
+## Timestamp: Serialização e ordenação
 
 **Serialização texto:** `"nome-do-processo:42"`
 
@@ -126,7 +126,7 @@ função COMPARAR(ts_a, ts_b):
         retornar comparar_texto(ts_a.id_nó, ts_b.id_nó)   -- desempate lexicográfico
 ```
 
-> A ordem total é definida em Lamport (1978), Seção 3 — "Ordering the Events Totally", p. 561.
+> A ordem total é definida em Lamport (1978), Seção 3 - "Ordering the Events Totally", p. 561.
 > O desempate por identificador do processo garante que dois timestamps distintos
 > nunca são considerados "iguais".
 
@@ -196,7 +196,7 @@ Ordem garantida: 1 < 2 < 3. **Sem ambiguidade, sem depender de NTP.**
 - **Um header a mais** por request (`X-Causality-Lamport: order-service:42`)
 - **Três linhas de lógica** por request (tick no envio, max+1 no recebimento)
 
-> É mais simples que configurar o NTP corretamente — e mais confiável.
+> É mais simples que configurar o NTP corretamente - e mais confiável.
 
 ---
 

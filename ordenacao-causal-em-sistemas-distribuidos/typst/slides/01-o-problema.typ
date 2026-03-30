@@ -3,7 +3,7 @@
 #set heading(numbering: "1.1")
 #set par(justify: true)
 
-= Módulo 01 — O Problema da Ordenação em Sistemas Distribuídos
+= Módulo 01: O Problema da Ordenação em Sistemas Distribuídos
 
 
 #line(length: 100%, stroke: 0.5pt + luma(200))
@@ -13,7 +13,7 @@
 
 
 Entender por que *não podemos confiar em timestamps físicos* para ordenar eventos
-em sistemas distribuídos — e por que isso importa.
+em sistemas distribuídos - e por que isso importa.
 
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
@@ -41,13 +41,13 @@ Cada um roda em *máquinas diferentes*, com *relógios diferentes*.
 
 ```
 Máquina A (relógio adiantado 2s):
-  10:00:03.000 — "pedido criado"
+  10:00:03.000 - "pedido criado"
 
 Máquina B (relógio correto):
-  10:00:01.500 — "pagamento processado"
+  10:00:01.500 - "pagamento processado"
 
 Máquina C (relógio atrasado 1s):
-  10:00:00.200 — "estoque reservado"
+  10:00:00.200 - "estoque reservado"
 ```
 
 
@@ -61,10 +61,10 @@ Na realidade: pedido → pagamento → estoque (nessa ordem).
 == Por que isso acontece?
 
 
-+ *Clock drift* — relógios de hardware derivam ~10-100ms por dia
-+ *NTP não é perfeito* — sincronização tem latência e jitter
-+ *Sem garantia de precisão* — dois hosts nunca têm exatamente o mesmo tempo
-+ *Leap seconds, DST, fusos* — complicam ainda mais
++ *Clock drift* - relógios de hardware derivam ~10-100ms por dia
++ *NTP não é perfeito* - sincronização tem latência e jitter
++ *Sem garantia de precisão* - dois hosts nunca têm exatamente o mesmo tempo
++ *Leap seconds, DST, fusos* - complicam ainda mais
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
   *Não existe um "relógio global" em sistemas distribuídos.*
@@ -74,7 +74,7 @@ Na realidade: pedido → pagamento → estoque (nessa ordem).
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Consequências reais — isso acontece no SEU projeto
+== Consequências reais: isso acontece no SEU projeto
 
 
 === Cenário 1: "O log mentiu"
@@ -90,7 +90,7 @@ Os logs só estão *fora de ordem* porque as máquinas têm relógios diferentes
 
 Dois microsserviços atualizam o saldo de um cliente quase ao mesmo tempo.
 Um debita, outro credita. Com last-write-wins baseado em timestamp,
-o crédito é silenciosamente *sobrescrito* pelo débito — porque a máquina
+o crédito é silenciosamente *sobrescrito* pelo débito - porque a máquina
 do débito tinha o relógio 50ms adiantado. Ninguém percebe até o cliente reclamar.
 
 === Cenário 3: "O replay deu diferente"
@@ -109,7 +109,7 @@ Em produção, com latência de rede variável, os serviços processam em ordens
 que o teste nunca exercitou. *Race condition invisível.*
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
-  *Esses problemas não aparecem em monolitos.* Eles surgem quando você distribui — e quanto mais serviços, mais frequentes ficam.
+  *Esses problemas não aparecem em monolitos.* Eles surgem quando você distribui - e quanto mais serviços, mais frequentes ficam.
 ]
 
 
@@ -176,7 +176,7 @@ Se nem `a → b` nem `b → a`, então `a` e `b` são *concorrentes* (`a ∥ b`)
   [*Exemplo*],
   [Ordem parcial],
   [Nem todo par de eventos é comparável],
-  [`a ∥ b` — incomparáveis],
+  [`a ∥ b` - incomparáveis],
   [Ordem total],
   [Todo par de eventos tem uma ordem definida],
   [`a < b` ou `b < a` sempre],
@@ -184,7 +184,7 @@ Se nem `a → b` nem `b → a`, então `a` e `b` são *concorrentes* (`a ∥ b`)
 
 
 A relação happens-before é uma *ordem parcial*.
-Eventos concorrentes não têm ordem definida — e *tudo bem*.
+Eventos concorrentes não têm ordem definida - e *tudo bem*.
 
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
@@ -194,11 +194,11 @@ Eventos concorrentes não têm ordem definida — e *tudo bem*.
 
 Dois mecanismos para capturar essa causalidade sem depender de wall clock:
 
-+ *Lamport Clock* — ordem total consistente com causalidade (simples, mas não detecta concorrência)
-+ *Vector Clock* — captura a relação causal completa (detecta concorrência!)
++ *Lamport Clock* - ordem total consistente com causalidade (simples, mas não detecta concorrência)
++ *Vector Clock* - captura a relação causal completa (detecta concorrência!)
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
-  *Spoiler:* a implementação inteira de um Lamport Clock cabe em ~15 linhas de pseudocódigo. A de um Vector Clock, em ~30. A propagação é um header HTTP extra ou um campo JSON. Não é rocket science — é uma das melhores relações custo/benefício em engenharia de sistemas distribuídos.
+  *Spoiler:* a implementação inteira de um Lamport Clock cabe em ~15 linhas de pseudocódigo. A de um Vector Clock, em ~30. A propagação é um header HTTP extra ou um campo JSON. Não é rocket science - é uma das melhores relações custo/benefício em engenharia de sistemas distribuídos.
 ]
 
 
@@ -230,15 +230,15 @@ Dois mecanismos para capturar essa causalidade sem depender de wall clock:
   [*Conceito*],
   [*O que é*],
   [Wall clock],
-  [Tempo físico — não confiável entre máquinas],
+  [Tempo físico - não confiável entre máquinas],
   [Clock drift],
   [Diferença acumulada entre relógios de hardware],
   [Happens-before (→)],
   [Relação causal entre eventos],
   [Concorrência (∥)],
-  [Eventos sem relação causal — independentes],
+  [Eventos sem relação causal - independentes],
   [Ordem parcial],
-  [Nem todo par é comparável — e isso é informação útil],
+  [Nem todo par é comparável - e isso é informação útil],
 )
 
 
@@ -248,7 +248,7 @@ Dois mecanismos para capturar essa causalidade sem depender de wall clock:
 == Referências deste módulo
 
 
-- Lamport (1978), Seção 1 — "Introduction" e Seção 2 — "The Partial Ordering"
-- Coulouris et al. (2012), Seção 14.1 — "Introduction to time and global states"
-- Kleppmann (2017), Cap. 8 — "The Trouble with Distributed Systems"
-- Tanenbaum & Van Steen (2017), Seção 6.1 — "Clock Synchronization"
+- Lamport (1978), Seção 1 - "Introduction" e Seção 2 - "The Partial Ordering"
+- Coulouris et al. (2012), Seção 14.1 - "Introduction to time and global states"
+- Kleppmann (2017), Cap. 8 - "The Trouble with Distributed Systems"
+- Tanenbaum & Van Steen (2017), Seção 6.1 - "Clock Synchronization"

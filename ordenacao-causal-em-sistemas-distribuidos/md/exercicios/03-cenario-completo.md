@@ -1,8 +1,8 @@
-# Exercício Final — Cenário Completo
+# Exercício Final: Cenário Completo
 
 ---
 
-## Exercício 3.1 — Debugging com causalidade (Médio, 15 min)
+## Exercício 3.1: Debugging com causalidade (Médio, 15 min)
 
 Você recebe um ticket de bug:
 
@@ -45,16 +45,16 @@ Logs de produção (ordenados por wall clock):
 <summary>Resposta</summary>
 
 1. Pelo wall clock: notificação → pedidos → pagamento → estoque.
-   Não faz sentido — email antes do pagamento?
+   Não faz sentido - email antes do pagamento?
 
 2. Usando os vetores para determinar causalidade:
-   - pagamento {ped:1, pag:3} — viu 1 evento de pedidos
-   - estoque {ped:3, pag:3, est:2} — viu 3 de pedidos E 3 de pagamento
-   - notificação {ped:3, pag:2, est:2, not:1} — viu 3 de pedidos, 2 de pagamento, 2 de estoque
-   - pedidos {ped:4, pag:0, est:0} — não viu nada de ninguém depois
+   - pagamento {ped:1, pag:3} - viu 1 evento de pedidos
+   - estoque {ped:3, pag:3, est:2} - viu 3 de pedidos E 3 de pagamento
+   - notificação {ped:3, pag:2, est:2, not:1} - viu 3 de pedidos, 2 de pagamento, 2 de estoque
+   - pedidos {ped:4, pag:0, est:0} - não viu nada de ninguém depois
 
    Ordem causal: pagamento → estoque → notificação.
-   Pedidos (passo 4) é **concorrente** com quase tudo — fez TICK sem receber de ninguém.
+   Pedidos (passo 4) é **concorrente** com quase tudo - fez TICK sem receber de ninguém.
 
 3. COMPARAR(pedidos, notificação): ped[ped]=4 > not[ped]=3, mas ped[pag]=0 < not[pag]=2.
    **CONCURRENT!** O update de status do pedido e o email de notificação aconteceram
@@ -69,7 +69,7 @@ Logs de produção (ordenados por wall clock):
 
 ---
 
-## Exercício 3.2 — Projetando causalidade para seu sistema (Médio, 20 min)
+## Exercício 3.2: Projetando causalidade para seu sistema (Médio, 20 min)
 
 Pense num sistema real que você trabalha (ou num projeto pessoal).
 Desenhe o fluxo entre 3-5 serviços/componentes principais.
@@ -102,9 +102,9 @@ Desenhe o fluxo entre 3-5 serviços/componentes principais.
 
 ---
 
-## Exercício 3.3 — Conflito no carrinho de compras (Médio, 15 min)
+## Exercício 3.3: Conflito no carrinho de compras (Médio, 15 min)
 
-> Inspirado no Amazon Dynamo — DeCandia et al. (2007), Seção 4.4.
+> Inspirado no Amazon Dynamo - DeCandia et al. (2007), Seção 4.4.
 
 Um e-commerce tem dois datacenters (US e EU) com réplicas do carrinho de compras.
 O cliente pode acessar qualquer datacenter.
@@ -148,7 +148,7 @@ Sequência:
    US[US]=3 > EU[US]=2, mas US[EU]=0 < EU[EU]=2.
    **CONCURRENT.**
 
-2. O merge correto é {A, B, C} — união dos dois carrinhos.
+2. O merge correto é {A, B, C} - união dos dois carrinhos.
    Livro A estava em ambos (não duplica). B e C são adições concorrentes.
 
 3. Merge automático nem sempre é possível. Para carrinhos, união funciona.
@@ -160,13 +160,13 @@ Sequência:
    Solução: usar **tombstones** (marcadores de deleção) em vez de remover.
 
    É por isso que o Amazon Dynamo mudou para usar CRDTs (OR-Set) em versões
-   mais recentes — CRDTs tratam remoções corretamente.
+   mais recentes - CRDTs tratam remoções corretamente.
 
 </details>
 
 ---
 
-## Exercício 3.4 — Quiz de encerramento (Rápido, 5 min)
+## Exercício 3.4: Quiz de encerramento (Rápido, 5 min)
 
 Responda sem consultar os slides. Se acertar 5/6, você entendeu a aula.
 
@@ -197,19 +197,19 @@ Responda sem consultar os slides. Se acertar 5/6, você entendeu a aula.
 <details>
 <summary>Respostas</summary>
 
-1. **N** — Lamport Clock impõe ordem total. Eventos concorrentes recebem
+1. **N** - Lamport Clock impõe ordem total. Eventos concorrentes recebem
    timestamps comparáveis (um < outro), mas isso é coincidência, não causalidade.
 
-2. **(b)** — `t ← max(t, t_recebido) + 1`
+2. **(b)** - `t ← max(t, t_recebido) + 1`
 
-3. **5** — Um inteiro por processo no sistema.
+3. **5** - Um inteiro por processo no sistema.
 
-4. **(c) a ∥ b** — a[X]=3 > b[X]=2, mas a[Y]=1 < b[Y]=4. Incomparáveis.
+4. **(c) a ∥ b** - a[X]=3 > b[X]=2, mas a[Y]=1 < b[Y]=4. Incomparáveis.
 
-5. **(c)** — Um header a mais. Ex: `X-Causality-Vector: svc-a=3,svc-b=1`
+5. **(c)** - Um header a mais. Ex: `X-Causality-Vector: svc-a=3,svc-b=1`
 
-6. RECEBER **incrementa** o contador local após o max (é um evento — "recebi algo").
-   MERGE **não incrementa** (é uma combinação passiva — "agreguei dois snapshots").
+6. RECEBER **incrementa** o contador local após o max (é um evento - "recebi algo").
+   MERGE **não incrementa** (é uma combinação passiva - "agreguei dois snapshots").
 
 </details>
 
@@ -241,4 +241,4 @@ Responda sem consultar os slides. Se acertar 5/6, você entendeu a aula.
 - Kleppmann, M. (2017). *Designing Data-Intensive Applications.* O'Reilly. Caps. 5, 8, 9.
 - Coulouris, G. et al. (2012). *Distributed Systems.* 5th ed. Exercises 14.12–14.14.
 - Taft, R. et al. (2020). *CockroachDB: The Resilient Geo-Distributed SQL Database.* SIGMOD.
-- Lakshman, A. & Malik, P. (2010). *Cassandra — A Decentralized Structured Storage System.* LADIS.
+- Lakshman, A. & Malik, P. (2010). *Cassandra: A Decentralized Structured Storage System.* LADIS.

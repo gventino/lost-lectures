@@ -44,7 +44,7 @@ d ∥ c  (concorrentes!)
 
 ---
 
-## 3. Lamport Clock — Fluxo
+## 3. Lamport Clock: Fluxo
 
 ```
 P1 (clock)    P2 (clock)    P3 (clock)
@@ -64,7 +64,7 @@ P1 (clock)    P2 (clock)    P3 (clock)
 
 ---
 
-## 4. Vector Clock — Fluxo
+## 4. Vector Clock: Fluxo
 
 ```
 P1                P2                P3

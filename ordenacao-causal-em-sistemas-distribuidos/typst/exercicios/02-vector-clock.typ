@@ -3,13 +3,13 @@
 #set heading(numbering: "1.1")
 #set par(justify: true)
 
-= Exercícios — Vector Clock
+= Exercícios: Vector Clock
 
 
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Exercício 2.1 — Detectando o conflito invisível (Fácil, 10 min)
+== Exercício 2.1: Detectando o conflito invisível (Fácil, 10 min)
 
 
 Dois microsserviços gerenciam o perfil de um usuário. Ambos podem receber
@@ -43,9 +43,9 @@ Serviço "profile-eu" (datacenter EU):
   *Resposta*
 
 
-+ *CONCURRENT* — us[us]=1 #sym.gt eu[us]=0, mas us[eu]=0 #sym.lt eu[eu]=1. Incomparáveis.
++ *CONCURRENT* - us[us]=1 #sym.gt eu[us]=0, mas us[eu]=0 #sym.lt eu[eu]=1. Incomparáveis.
 
-+ Depende de qual máquina tem o relógio "na frente". Não é correto — a
++ Depende de qual máquina tem o relógio "na frente". Não é correto - a
    "vitória" depende de clock drift, não de lógica de negócio.
 
 + *Não.* Lamport Clock poderia dar LC=1 a ambos, mas mesmo que diferissem,
@@ -53,7 +53,7 @@ Serviço "profile-eu" (datacenter EU):
    de coincidência numérica.
 
 + Estratégias:
-  - *Retornar ambos ao cliente:* "Alice escreveu X, Bob escreveu Y — qual manter?"
+  - *Retornar ambos ao cliente:* "Alice escreveu X, Bob escreveu Y - qual manter?"
      (como o Amazon Dynamo faz com o carrinho de compras)
   - *Regra de negócio:* merge dos campos (se um mudou nome e outro mudou email,
      não há conflito real). Ou: nome mais longo vence, ou mais recente por UUID v7.
@@ -64,7 +64,7 @@ Serviço "profile-eu" (datacenter EU):
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Exercício 2.2 — Simulando o fluxo de um pedido (Médio, 15 min)
+== Exercício 2.2: Simulando o fluxo de um pedido (Médio, 15 min)
 
 
 Simule o fluxo completo com 3 serviços: Pedidos (P), Pagamento (G), Estoque (E).
@@ -158,35 +158,35 @@ Depois responda:
   [{P:0, G:0, E:0}],
   [1],
   [{P:1, G:0, E:0}],
-  [—],
-  [—],
+  [-],
+  [-],
   [2],
   [{P:2, G:0, E:0}],
-  [—],
-  [—],
+  [-],
+  [-],
   [3],
   [{P:3, G:0, E:0}],
-  [—],
-  [—],
+  [-],
+  [-],
   [4],
-  [—],
+  [-],
   [{P:2, G:2, E:0}],
-  [—],
+  [-],
   [5],
-  [—],
+  [-],
   [{P:2, G:3, E:0}],
-  [—],
+  [-],
   [6],
-  [—],
-  [—],
+  [-],
+  [-],
   [{P:3, G:0, E:1}],
   [7],
-  [—],
-  [—],
+  [-],
+  [-],
   [{P:3, G:3, E:2}],
   [8],
-  [—],
-  [—],
+  [-],
+  [-],
   [{P:3, G:3, E:3}],
 )
 
@@ -199,7 +199,7 @@ Depois responda:
   O vetor carrega o "conhecimento causal transitivo".
 
 - Não. P termina com {P:3, G:0, E:0}. P não recebeu nenhuma mensagem de E ou G
-  depois das notificações — não sabe o que aconteceu downstream.
+  depois das notificações - não sabe o que aconteceu downstream.
 
 ]
 
@@ -207,7 +207,7 @@ Depois responda:
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Exercício 2.3 — Adicionando ao seu middleware (Médio, 15 min)
+== Exercício 2.3: Adicionando ao seu middleware (Médio, 15 min)
 
 
 No Exercício 1.2, você adicionou Lamport Clock ao middleware.
@@ -271,7 +271,7 @@ função VERIFICAR_CONFLITO(vetor_anterior, vetor_atual):
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Exercício 2.4 — Merge vs Receive: quando usar qual? (Rápido, 5 min)
+== Exercício 2.4: Merge vs Receive: quando usar qual? (Rápido, 5 min)
 
 
 Cenário: você tem um serviço de *monitoramento* que coleta snapshots
@@ -310,10 +310,10 @@ dos vector clocks de 10 serviços para montar um dashboard causal.
   [*Por quê*],
   [Serviço A recebe HTTP request do Serviço B],
   [*RECEBER*],
-  [É um evento causal — A recebeu de B],
+  [É um evento causal - A recebeu de B],
   [Consumer Kafka processa mensagem],
   [*RECEBER*],
-  [É um evento causal — consumiu a mensagem],
+  [É um evento causal - consumiu a mensagem],
   [Dashboard agrega clocks de vários serviços],
   [*MERGE*],
   [Observador, não participante],
@@ -342,7 +342,7 @@ MERGE só combina (max element-wise, sem incremento).
 
 
 - *Amazon Dynamo e vector clocks truncados:* DeCandia et al. (2007), Seção 4.4.
-  Simule o cenário da Figura 3 do paper — 3 nós com escritas concorrentes
+  Simule o cenário da Figura 3 do paper - 3 nós com escritas concorrentes
   e reconciliação no cliente.
 
 - *Cortes consistentes:* Chandy & Lamport (1985). Use vector clocks para

@@ -3,7 +3,7 @@
 #set heading(numbering: "1.1")
 #set par(justify: true)
 
-= Módulo 02 — Lamport Clock
+= Módulo 02: Lamport Clock
 
 
 #line(length: 100%, stroke: 0.5pt + luma(200))
@@ -23,12 +23,12 @@ propriedades e limitações.
 
 Um *contador monotônico* (inteiro que só cresce) por processo.
 
-- Não mede tempo real — mede *ordem lógica*
+- Não mede tempo real - mede *ordem lógica*
 - Garante: se `a → b`, então `C(a) < C(b)`
 - *Não* garante o inverso: `C(a) < C(b)` não significa que `a → b`
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
-  Referência: Lamport, L. (1978), Seção 2 — "The Partial Ordering", pp. 559–560.
+  Referência: Lamport, L. (1978), Seção 2 - "The Partial Ordering", pp. 559–560.
 ]
 
 
@@ -38,7 +38,7 @@ Um *contador monotônico* (inteiro que só cresce) por processo.
 == As três regras (do paper original)
 
 
-=== Regra 1 — Evento interno
+=== Regra 1: Evento interno
 
 
 Antes de qualquer evento, incrementa o clock.
@@ -48,7 +48,7 @@ t ← t + 1
 ```
 
 
-=== Regra 2 — Envio de mensagem
+=== Regra 2: Envio de mensagem
 
 
 Incrementa o clock e anexa o valor à mensagem.
@@ -59,7 +59,7 @@ enviar(mensagem, t)
 ```
 
 
-=== Regra 3 — Recebimento de mensagem
+=== Regra 3: Recebimento de mensagem
 
 
 Ao receber uma mensagem com timestamp `t_msg`:
@@ -104,7 +104,7 @@ B → C: `C(B_send) = 5 < C(C_receive) = 6` Sim
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Pseudocódigo — Estrutura
+== Pseudocódigo: Estrutura
 
 
 ```
@@ -124,7 +124,7 @@ estrutura LamportTimestamp:
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Pseudocódigo — Operações
+== Pseudocódigo: Operações
 
 
 ```
@@ -148,7 +148,7 @@ função RECEBER(clock, timestamp):
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Timestamp — Serialização e ordenação
+== Timestamp: Serialização e ordenação
 
 
 *Serialização texto:* `"nome-do-processo:42"`
@@ -164,7 +164,7 @@ função COMPARAR(ts_a, ts_b):
 
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
-  A ordem total é definida em Lamport (1978), Seção 3 — "Ordering the Events Totally", p. 561. O desempate por identificador do processo garante que dois timestamps distintos nunca são considerados "iguais".
+  A ordem total é definida em Lamport (1978), Seção 3 - "Ordering the Events Totally", p. 561. O desempate por identificador do processo garante que dois timestamps distintos nunca são considerados "iguais".
 ]
 
 
@@ -268,7 +268,7 @@ Ordem garantida: 1 #sym.lt 2 #sym.lt 3. *Sem ambiguidade, sem depender de NTP.*
 - *Três linhas de lógica* por request (tick no envio, max+1 no recebimento)
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
-  É mais simples que configurar o NTP corretamente — e mais confiável.
+  É mais simples que configurar o NTP corretamente - e mais confiável.
 ]
 
 

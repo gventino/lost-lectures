@@ -1,4 +1,4 @@
-# Módulo 06 — Hands-on: Exercícios Práticos
+# Módulo 06: Hands-on: Exercícios Práticos
 
 ---
 
@@ -9,7 +9,7 @@ baseados em problemas clássicos de sistemas distribuídos.
 
 ---
 
-## Exercício A — Lamport Clock: ordenação de eventos (15 min)
+## Exercício A: Lamport Clock: ordenação de eventos (15 min)
 
 > Adaptado de Coulouris et al. (2012), Exercise 14.8.
 
@@ -40,7 +40,7 @@ P1          P2          P3
 
 ---
 
-## Exercício B — Vector Clock: detecção de causalidade (20 min)
+## Exercício B: Vector Clock: detecção de causalidade (20 min)
 
 > Adaptado de Coulouris et al. (2012), Exercise 14.9,
 > e Tanenbaum & Van Steen (2017), Exercise 6.8.
@@ -64,9 +64,9 @@ Usando o **mesmo diagrama** do Exercício A, agora com Vector Clocks:
 
 ---
 
-## Exercício C — Cenário prático: detecção de conflito (15 min)
+## Exercício C: Cenário prático: detecção de conflito (15 min)
 
-> Inspirado no Amazon Dynamo — DeCandia et al. (2007), Seção 4.4.
+> Inspirado no Amazon Dynamo - DeCandia et al. (2007), Seção 4.4.
 
 Dois nós de um banco de dados distribuído (réplica US e réplica EU) mantêm
 vector clocks para detectar escritas concorrentes:
@@ -101,7 +101,7 @@ Sequência de eventos:
 
 ---
 
-## Exercício D — Corte consistente (20 min)
+## Exercício D: Corte consistente (20 min)
 
 > Baseado em Chandy & Lamport (1985) e apresentado em
 > Coulouris et al. (2012), Seção 14.5 e Exercise 14.12.
@@ -134,7 +134,7 @@ P3:  --i------j------k------l--
 
 ---
 
-## Exercício E — Cenário completo: e-commerce (30 min)
+## Exercício E: Cenário completo: e-commerce (30 min)
 
 > Síntese dos conceitos. Adaptado de cenários em Kleppmann (2017), Cap. 9.
 
@@ -243,7 +243,7 @@ implementação que economiza **dias** de debugging.
 |--------|------------------------------------------------------------|
 | 01     | Wall clock não funciona → precisamos de relógios lógicos   |
 | 02     | Lamport Clock: simples, ordem total, não detecta ∥          |
-| 03     | CausalityRelation: →, ←, ∥, = — as 4 relações possíveis   |
+| 03     | CausalityRelation: →, ←, ∥, = - as 4 relações possíveis   |
 | 04     | Vector Clock: completo, detecta ∥, mas O(N) por mensagem   |
 | 05     | TracedEvent + Transport: propagação agnóstica a framework   |
 | 06     | Hands-on: exercícios clássicos e cenários práticos          |
@@ -252,11 +252,11 @@ implementação que economiza **dias** de debugging.
 
 ## Para ir além
 
-- Ler o paper original: Lamport (1978) — 8 páginas, surpreendentemente acessível
-- **CRDTs** — Conflict-free Replicated Data Types (Shapiro et al., 2011)
-- **Hybrid Logical Clocks** — Kulkarni et al. (2014)
-- **Interval Tree Clocks** — Almeida et al. (2008)
-- **Designing Data-Intensive Applications** — Kleppmann (2017), Caps. 5, 8, 9
+- Ler o paper original: Lamport (1978) - 8 páginas, surpreendentemente acessível
+- **CRDTs** - Conflict-free Replicated Data Types (Shapiro et al., 2011)
+- **Hybrid Logical Clocks** - Kulkarni et al. (2014)
+- **Interval Tree Clocks** - Almeida et al. (2008)
+- **Designing Data-Intensive Applications** - Kleppmann (2017), Caps. 5, 8, 9
 
 ---
 

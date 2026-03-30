@@ -60,7 +60,7 @@ d ∥ c  (concorrentes!)
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== 3. Lamport Clock — Fluxo
+== 3. Lamport Clock: Fluxo
 
 
 ```
@@ -83,7 +83,7 @@ P1 (clock)    P2 (clock)    P3 (clock)
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== 4. Vector Clock — Fluxo
+== 4. Vector Clock: Fluxo
 
 
 ```

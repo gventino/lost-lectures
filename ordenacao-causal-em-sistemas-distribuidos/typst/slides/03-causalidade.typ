@@ -3,7 +3,7 @@
 #set heading(numbering: "1.1")
 #set par(justify: true)
 
-= Módulo 03 — Relações de Causalidade
+= Módulo 03: Relações de Causalidade
 
 
 #line(length: 100%, stroke: 0.5pt + luma(200))
@@ -61,7 +61,7 @@ enumeração CausalityRelation:
 == Operações úteis
 
 
-=== INVERSO — inverte a perspectiva
+=== INVERSO: inverte a perspectiva
 
 
 Se A *happens-before* B, do ponto de vista de B, A *happens-after*.
@@ -75,7 +75,7 @@ função INVERSO(relação):
 ```
 
 
-=== É_CAUSAL — existe relação de causa-efeito?
+=== É_CAUSAL: existe relação de causa-efeito?
 
 
 ```
@@ -84,7 +84,7 @@ função É_CAUSAL(relação):
 ```
 
 
-=== É_CONCORRENTE — são eventos independentes?
+=== É_CONCORRENTE: são eventos independentes?
 
 
 ```
@@ -123,7 +123,7 @@ A relação happens-before forma uma *ordem parcial estrita* (Lamport, 1978, p. 
 A concorrência é *simétrica*: se `a ∥ b`, então `b ∥ a`.
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
-  "A relação '→' é uma ordem parcial irreflexiva sobre o conjunto de todos os eventos no sistema." — Lamport (1978), p. 559.
+  "A relação '→' é uma ordem parcial irreflexiva sobre o conjunto de todos os eventos no sistema." - Lamport (1978), p. 559.
 ]
 
 
@@ -150,7 +150,7 @@ e1 → e2   O pedido foi criado antes de notificar (mesmo serviço)
 e2 → e3   A notificação causou o processamento do pagamento (mensagem)
 e1 → e3   Transitividade: pedido causou pagamento (e1 → e2 → e3)
 
-e4 ∥ e3   Estoque e Pagamento rodaram independentemente — CONCURRENT!
+e4 ∥ e3   Estoque e Pagamento rodaram independentemente - CONCURRENT!
 ```
 
 
@@ -251,10 +251,10 @@ função COMPARAR(V_a, V_b):
 
 Em sistemas distribuídos, detectar concorrência permite:
 
-- *Detecção de conflitos* — duas escritas simultâneas no mesmo recurso
-- *Estratégias de merge* — CRDTs, operational transform
-- *Alertas* — "estes dois serviços escreveram ao mesmo tempo"
-- *Debugging* — "este bug é um race condition, não um bug de lógica"
+- *Detecção de conflitos* - duas escritas simultâneas no mesmo recurso
+- *Estratégias de merge* - CRDTs, operational transform
+- *Alertas* - "estes dois serviços escreveram ao mesmo tempo"
+- *Debugging* - "este bug é um race condition, não um bug de lógica"
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
   Com Lamport Clock, eventos concorrentes parecem ordenados. Com Vector Clock, *sabemos* que não há ordem entre eles.
@@ -285,10 +285,10 @@ você provavelmente usa uma dessas estratégias:
 
 
 Com detecção de causalidade, você ganha uma *quinta opção*: saber quando
-o conflito existe e tratá-lo explicitamente — sem lock, sem fila, sem ignorar.
+o conflito existe e tratá-lo explicitamente - sem lock, sem fila, sem ignorar.
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
-  Kleppmann (2017) discute as implicações práticas em "Designing Data-Intensive Applications", Capítulo 5 — "Detecting Concurrent Writes", pp. 184–190.
+  Kleppmann (2017) discute as implicações práticas em "Designing Data-Intensive Applications", Capítulo 5 - "Detecting Concurrent Writes", pp. 184–190.
 ]
 
 
@@ -341,7 +341,7 @@ Determine:
   [HappensAfter],
   [Caminho causal de B para A],
   [Concurrent],
-  [Nenhum causou o outro — possível conflito],
+  [Nenhum causou o outro - possível conflito],
   [Equal],
   [Mesmo estado lógico],
   [INVERSO],
@@ -357,9 +357,9 @@ Determine:
 == Referências deste módulo
 
 
-- Lamport (1978), Seção 2 — definição de happens-before
+- Lamport (1978), Seção 2 - definição de happens-before
 - Fidge, C. (1988). *Timestamps in Message-Passing Systems That Preserve the Partial Ordering.*
 - Mattern, F. (1989). *Virtual Time and Global States of Distributed Systems.*
 - Schwarz & Mattern (1994). *Detecting Causal Relationships in Distributed Computations.*
-- Coulouris et al. (2012), Seção 14.4 — algoritmo de comparação
-- Kleppmann (2017), Cap. 8 — implicações práticas
+- Coulouris et al. (2012), Seção 14.4 - algoritmo de comparação
+- Kleppmann (2017), Cap. 8 - implicações práticas

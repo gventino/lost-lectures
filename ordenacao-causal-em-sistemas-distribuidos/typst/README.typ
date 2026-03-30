@@ -84,9 +84,9 @@ Ao final desta aula, o aluno será capaz de:
 == Materiais
 
 
-- `slides/` — Conteúdo teórico e exemplos de código para cada módulo
-- `exercicios/` — Exercícios práticos progressivos (do básico ao avançado)
-- `diagramas/` — Diagramas ASCII de referência para quadro/projeção
+- `slides/` - Conteúdo teórico e exemplos de código para cada módulo
+- `exercicios/` - Exercícios práticos progressivos (do básico ao avançado)
+- `diagramas/` - Diagramas ASCII de referência para quadro/projeção
 
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
@@ -122,4 +122,4 @@ Ao final desta aula, o aluno será capaz de:
 
 
 O SDK `like-a-clockwork` (Rust) implementa todos os conceitos desta aula.
-Repositório: `like-a-clockwork/` — specs em `.github/specs/`, planos em `.github/plans/`.
+Repositório: `like-a-clockwork/` - specs em `.github/specs/`, planos em `.github/plans/`.

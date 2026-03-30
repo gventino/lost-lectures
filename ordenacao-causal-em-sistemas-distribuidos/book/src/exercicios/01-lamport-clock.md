@@ -1,8 +1,8 @@
-# Exercícios — Lamport Clock
+# Exercícios: Lamport Clock
 
 ---
 
-## Exercício 1.1 — Ordenando logs de produção (Fácil, 10 min)
+## Exercício 1.1: Ordenando logs de produção (Fácil, 10 min)
 
 Você recebe estes logs de 3 microsserviços. Cada serviço está numa máquina
 diferente e os relógios não estão sincronizados.
@@ -53,7 +53,7 @@ Com desempate lexicográfico, inventory < order-svc, mas isso é arbitrário.
 
 ---
 
-## Exercício 1.2 — Implementando no seu middleware (Médio, 15 min)
+## Exercício 1.2: Implementando no seu middleware (Médio, 15 min)
 
 Você tem um middleware HTTP (interceptor de requests) e quer adicionar
 Lamport Clock a todas as chamadas entre serviços.
@@ -108,8 +108,8 @@ função middleware_recebimento(request):
     retornar processar(request)
 ```
 
-2. Inicializa no startup — é global por serviço (1 instância).
-3. Sim, precisa de lock/mutex — múltiplas goroutines/threads podem chamar TICK
+2. Inicializa no startup - é global por serviço (1 instância).
+3. Sim, precisa de lock/mutex - múltiplas goroutines/threads podem chamar TICK
    simultaneamente. Em linguagens com async, um Mutex simples basta.
 4. Request sem header → faz TICK (é um evento interno, não um receive).
 
@@ -117,7 +117,7 @@ função middleware_recebimento(request):
 
 ---
 
-## Exercício 1.3 — Verdadeiro ou Falso (Rápido, 5 min)
+## Exercício 1.3: Verdadeiro ou Falso (Rápido, 5 min)
 
 Para cada afirmação, diga se é **V** ou **F** e justifique em uma frase:
 
@@ -131,12 +131,12 @@ Para cada afirmação, diga se é **V** ou **F** e justifique em uma frase:
 <details>
 <summary>Resposta</summary>
 
-1. **F** — `C(a) < C(b)` é necessário mas não suficiente. Eventos concorrentes podem ter essa relação numérica por coincidência.
-2. **V** — Essa é a Clock Condition, garantida pelo algoritmo. (Lamport, 1978, p. 560)
-3. **V** — Processos independentes podem fazer TICK e chegar ao mesmo número.
-4. **F** — O clock é monotônico. TICK, ENVIAR e RECEBER sempre incrementam.
-5. **V** — Cada um incrementa localmente. Sem mensagens, não há sincronização.
-6. **F** — É um header de ~20-30 caracteres (ex: "order-svc:1042"). Menor que um cookie.
+1. **F** - `C(a) < C(b)` é necessário mas não suficiente. Eventos concorrentes podem ter essa relação numérica por coincidência.
+2. **V** - Essa é a Clock Condition, garantida pelo algoritmo. (Lamport, 1978, p. 560)
+3. **V** - Processos independentes podem fazer TICK e chegar ao mesmo número.
+4. **F** - O clock é monotônico. TICK, ENVIAR e RECEBER sempre incrementam.
+5. **V** - Cada um incrementa localmente. Sem mensagens, não há sincronização.
+6. **F** - É um header de ~20-30 caracteres (ex: "order-svc:1042"). Menor que um cookie.
 
 </details>
 

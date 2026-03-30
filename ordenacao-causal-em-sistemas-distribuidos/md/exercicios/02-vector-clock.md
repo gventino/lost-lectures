@@ -1,8 +1,8 @@
-# Exercícios — Vector Clock
+# Exercícios: Vector Clock
 
 ---
 
-## Exercício 2.1 — Detectando o conflito invisível (Fácil, 10 min)
+## Exercício 2.1: Detectando o conflito invisível (Fácil, 10 min)
 
 Dois microsserviços gerenciam o perfil de um usuário. Ambos podem receber
 updates de clientes diferentes:
@@ -32,9 +32,9 @@ Serviço "profile-eu" (datacenter EU):
 <details>
 <summary>Resposta</summary>
 
-1. **CONCURRENT** — us[us]=1 > eu[us]=0, mas us[eu]=0 < eu[eu]=1. Incomparáveis.
+1. **CONCURRENT** - us[us]=1 > eu[us]=0, mas us[eu]=0 < eu[eu]=1. Incomparáveis.
 
-2. Depende de qual máquina tem o relógio "na frente". Não é correto — a
+2. Depende de qual máquina tem o relógio "na frente". Não é correto - a
    "vitória" depende de clock drift, não de lógica de negócio.
 
 3. **Não.** Lamport Clock poderia dar LC=1 a ambos, mas mesmo que diferissem,
@@ -42,7 +42,7 @@ Serviço "profile-eu" (datacenter EU):
    de coincidência numérica.
 
 4. Estratégias:
-   - **Retornar ambos ao cliente:** "Alice escreveu X, Bob escreveu Y — qual manter?"
+   - **Retornar ambos ao cliente:** "Alice escreveu X, Bob escreveu Y - qual manter?"
      (como o Amazon Dynamo faz com o carrinho de compras)
    - **Regra de negócio:** merge dos campos (se um mudou nome e outro mudou email,
      não há conflito real). Ou: nome mais longo vence, ou mais recente por UUID v7.
@@ -51,7 +51,7 @@ Serviço "profile-eu" (datacenter EU):
 
 ---
 
-## Exercício 2.2 — Simulando o fluxo de um pedido (Médio, 15 min)
+## Exercício 2.2: Simulando o fluxo de um pedido (Médio, 15 min)
 
 Simule o fluxo completo com 3 serviços: Pedidos (P), Pagamento (G), Estoque (E).
 
@@ -95,14 +95,14 @@ Depois responda:
 | Passo | P                  | G                  | E                  |
 |-------|--------------------|--------------------|--------------------|
 | 0     | {P:0, G:0, E:0}   | {P:0, G:0, E:0}   | {P:0, G:0, E:0}   |
-| 1     | {P:1, G:0, E:0}   | —                  | —                  |
-| 2     | {P:2, G:0, E:0}   | —                  | —                  |
-| 3     | {P:3, G:0, E:0}   | —                  | —                  |
-| 4     | —                  | {P:2, G:2, E:0}   | —                  |
-| 5     | —                  | {P:2, G:3, E:0}   | —                  |
-| 6     | —                  | —                  | {P:3, G:0, E:1}   |
-| 7     | —                  | —                  | {P:3, G:3, E:2}   |
-| 8     | —                  | —                  | {P:3, G:3, E:3}   |
+| 1     | {P:1, G:0, E:0}   | -                  | -                  |
+| 2     | {P:2, G:0, E:0}   | -                  | -                  |
+| 3     | {P:3, G:0, E:0}   | -                  | -                  |
+| 4     | -                  | {P:2, G:2, E:0}   | -                  |
+| 5     | -                  | {P:2, G:3, E:0}   | -                  |
+| 6     | -                  | -                  | {P:3, G:0, E:1}   |
+| 7     | -                  | -                  | {P:3, G:3, E:2}   |
+| 8     | -                  | -                  | {P:3, G:3, E:3}   |
 
 - ts2 = {P:3, G:0, E:0} vs ts3 = {P:2, G:3, E:0}: **CONCURRENT**.
   ts2[P]=3 > ts3[P]=2, mas ts2[G]=0 < ts3[G]=3. São mensagens independentes
@@ -112,13 +112,13 @@ Depois responda:
   O vetor carrega o "conhecimento causal transitivo".
 
 - Não. P termina com {P:3, G:0, E:0}. P não recebeu nenhuma mensagem de E ou G
-  depois das notificações — não sabe o que aconteceu downstream.
+  depois das notificações - não sabe o que aconteceu downstream.
 
 </details>
 
 ---
 
-## Exercício 2.3 — Adicionando ao seu middleware (Médio, 15 min)
+## Exercício 2.3: Adicionando ao seu middleware (Médio, 15 min)
 
 No Exercício 1.2, você adicionou Lamport Clock ao middleware.
 Agora faça o upgrade para Vector Clock.
@@ -176,7 +176,7 @@ função VERIFICAR_CONFLITO(vetor_anterior, vetor_atual):
 
 ---
 
-## Exercício 2.4 — Merge vs Receive: quando usar qual? (Rápido, 5 min)
+## Exercício 2.4: Merge vs Receive: quando usar qual? (Rápido, 5 min)
 
 Cenário: você tem um serviço de **monitoramento** que coleta snapshots
 dos vector clocks de 10 serviços para montar um dashboard causal.
@@ -194,8 +194,8 @@ dos vector clocks de 10 serviços para montar um dashboard causal.
 
 | Situação                                      | Usar RECEBER ou MERGE? | Por quê                                    |
 |-----------------------------------------------|------------------------|--------------------------------------------|
-| Serviço A recebe HTTP request do Serviço B    | **RECEBER**            | É um evento causal — A recebeu de B        |
-| Consumer Kafka processa mensagem              | **RECEBER**            | É um evento causal — consumiu a mensagem   |
+| Serviço A recebe HTTP request do Serviço B    | **RECEBER**            | É um evento causal - A recebeu de B        |
+| Consumer Kafka processa mensagem              | **RECEBER**            | É um evento causal - consumiu a mensagem   |
 | Dashboard agrega clocks de vários serviços    | **MERGE**              | Observador, não participante               |
 | Serviço reconstrói estado a partir de backup  | **MERGE**              | Reconstrução, não evento novo              |
 | Health check pega snapshot de outro serviço   | **MERGE** (ou nada)    | Observação, não afeta causalidade          |
@@ -213,7 +213,7 @@ MERGE só combina (max element-wise, sem incremento).
 ## Para ir além (referências acadêmicas)
 
 - **Amazon Dynamo e vector clocks truncados:** DeCandia et al. (2007), Seção 4.4.
-  Simule o cenário da Figura 3 do paper — 3 nós com escritas concorrentes
+  Simule o cenário da Figura 3 do paper - 3 nós com escritas concorrentes
   e reconciliação no cliente.
 
 - **Cortes consistentes:** Chandy & Lamport (1985). Use vector clocks para

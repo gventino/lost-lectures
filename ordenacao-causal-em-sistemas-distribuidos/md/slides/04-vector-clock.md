@@ -1,11 +1,11 @@
-# Módulo 04 — Vector Clock
+# Módulo 04: Vector Clock
 
 ---
 
 ## Objetivo
 
 Implementar um **relógio vetorial** que captura a relação causal completa
-entre eventos — incluindo a detecção de concorrência.
+entre eventos - incluindo a detecção de concorrência.
 
 ---
 
@@ -17,7 +17,7 @@ entre eventos — incluindo a detecção de concorrência.
 | Se `a → b`               | `C(a) < C(b)`        | `V(a) < V(b)`        |
 | Se `C(a) < C(b)`         | **Não** implica `a → b` | `V(a) < V(b)` ⟺ `a → b`|
 | Detecta concorrência     | Não                   | Sim                   |
-| Espaço por mensagem      | O(1)                    | O(N) — N = nº processos |
+| Espaço por mensagem      | O(1)                    | O(N) - N = nº processos |
 
 > **Strong Clock Condition:** `V(a) < V(b)` se e somente se `a → b`
 >
@@ -55,7 +55,7 @@ estrutura VectorTimestamp:
 
 ## As três regras
 
-### Regra 1 — Evento interno (TICK)
+### Regra 1: Evento interno (TICK)
 
 Incrementa **apenas** o contador do processo local.
 
@@ -64,7 +64,7 @@ função TICK(vc):
     vc.vetores[vc.id_nó] ← vc.vetores[vc.id_nó] + 1
 ```
 
-### Regra 2 — Envio (ENVIAR)
+### Regra 2: Envio (ENVIAR)
 
 Incrementa o contador local e envia **todo o vetor** junto com a mensagem.
 
@@ -74,7 +74,7 @@ função ENVIAR(vc):
     retornar cópia(vc.vetores)    -- snapshot completo
 ```
 
-### Regra 3 — Recebimento (RECEBER)
+### Regra 3: Recebimento (RECEBER)
 
 Para **cada** entrada no vetor, toma o máximo. Depois incrementa o local.
 
@@ -125,7 +125,7 @@ Agora compare:
 
 ## Operações adicionais
 
-### SNAPSHOT — captura sem modificar
+### SNAPSHOT: captura sem modificar
 
 ```
 função SNAPSHOT(vc):
@@ -134,7 +134,7 @@ função SNAPSHOT(vc):
 
 Útil para anexar metadata causal a eventos sem alterar o clock.
 
-### MERGE — combina sem incrementar
+### MERGE: combina sem incrementar
 
 ```
 função MERGE(vc_a, vc_b):
@@ -144,9 +144,9 @@ função MERGE(vc_a, vc_b):
 ```
 
 Útil para **agregadores** que reconstroem estado causal global.
-Note: MERGE é **comutativo** — `MERGE(A,B) = MERGE(B,A)`.
+Note: MERGE é **comutativo** - `MERGE(A,B) = MERGE(B,A)`.
 
-### CONSULTAR — valor de um nó
+### CONSULTAR: valor de um nó
 
 ```
 função CONSULTAR(vc, id_nó):
@@ -194,7 +194,7 @@ vc_a.vetores = { svc-a: 3, svc-b: 1, svc-d: 3 }
 > *interval tree clocks* no Cap. 5, pp. 184–186.
 >
 > O Amazon Dynamo usa vector clocks truncados para lidar com escala
-> — vide DeCandia et al. (2007), Seção 4.4.
+> - vide DeCandia et al. (2007), Seção 4.4.
 
 ---
 
@@ -210,8 +210,8 @@ Ninguém consegue reproduzir localmente.
 ### Sem Vector Clock
 
 ```
-Log do serviço A:  10:30:00.123 — atualizou nome para "João Silva"
-Log do serviço B:  10:30:00.125 — atualizou nome para "João S."
+Log do serviço A:  10:30:00.123 - atualizou nome para "João Silva"
+Log do serviço B:  10:30:00.125 - atualizou nome para "João S."
 ```
 
 Parece que B veio depois. Mas na máquina de A o relógio estava 50ms adiantado.
@@ -220,8 +220,8 @@ Na verdade, as escritas foram **simultâneas** (concorrentes). Você nunca desco
 ### Com Vector Clock
 
 ```
-Serviço A: {A:5, B:2}  — atualizou nome para "João Silva"
-Serviço B: {A:3, B:4}  — atualizou nome para "João S."
+Serviço A: {A:5, B:2}  - atualizou nome para "João Silva"
+Serviço B: {A:3, B:4}  - atualizou nome para "João S."
 
 COMPARAR → CONCURRENT!  
 ```
@@ -253,9 +253,9 @@ Simule no papel com 3 processos (P1, P2, P3):
 3. P3 "sabe" que P1 e P2 existiram?
 
 **Respostas:**
-1. **Concurrent** — P1[P1]=3 > P3[P1]=2, mas P1[P2]=0 < P3[P2]=2
-2. **HappensBefore** — P2 ≤ P3 em todas as dimensões, com P1 e P3 estritamente menor
-3. Sim! P3 tem {P1:2, P2:2, P3:2} — sabe que viu 2 eventos de P1 e 2 de P2
+1. **Concurrent** - P1[P1]=3 > P3[P1]=2, mas P1[P2]=0 < P3[P2]=2
+2. **HappensBefore** - P2 ≤ P3 em todas as dimensões, com P1 e P3 estritamente menor
+3. Sim! P3 tem {P1:2, P2:2, P3:2} - sabe que viu 2 eventos de P1 e 2 de P2
 
 > Exercício adaptado de Tanenbaum & Van Steen (2017), Exercícios do Cap. 6.
 
@@ -281,7 +281,7 @@ Simule no papel com 3 processos (P1, P2, P3):
 
 - Fidge, C. (1988). *Timestamps in Message-Passing Systems That Preserve the Partial Ordering.*
 - Mattern, F. (1989). *Virtual Time and Global States of Distributed Systems.* Seções 3–4.
-- Tanenbaum & Van Steen (2017), Seção 6.2.2 — "Vector Clocks"
-- Coulouris et al. (2012), Seção 14.4 — "Logical time and logical clocks", Figuras 14.7–14.8
+- Tanenbaum & Van Steen (2017), Seção 6.2.2 - "Vector Clocks"
+- Coulouris et al. (2012), Seção 14.4 - "Logical time and logical clocks", Figuras 14.7–14.8
 - DeCandia et al. (2007). *Dynamo: Amazon's Highly Available Key-value Store.* Seção 4.4.
-- Kleppmann (2017), Caps. 5 e 8 — vector clocks em aplicações reais
+- Kleppmann (2017), Caps. 5 e 8 - vector clocks em aplicações reais

@@ -3,7 +3,7 @@
 #set heading(numbering: "1.1")
 #set par(justify: true)
 
-= Módulo 05 — Traced Events e Transport Layer
+= Módulo 05: Traced Events e Transport Layer
 
 
 #line(length: 100%, stroke: 0.5pt + luma(200))
@@ -13,7 +13,7 @@
 
 
 Entender como *propagar contexto causal* através de diferentes mecanismos
-de transporte (HTTP, Kafka, JSON) — e como encapsular eventos com metadata causal.
+de transporte (HTTP, Kafka, JSON) - e como encapsular eventos com metadata causal.
 
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
@@ -39,7 +39,7 @@ Como B sabe o estado de A? → Precisa estar nos headers!
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== TracedEvent — o envelope causal
+== TracedEvent: o envelope causal
 
 
 Um TracedEvent associa *metadata causal* a qualquer evento de domínio:
@@ -118,7 +118,7 @@ X-Causality-EventType: pedido.criado
 
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
-  O *payload NÃO vai nos headers* — vai no body da requisição. Headers carregam apenas metadata causal.
+  O *payload NÃO vai nos headers* - vai no body da requisição. Headers carregam apenas metadata causal.
 ]
 
 
@@ -223,7 +223,7 @@ No recebimento de cada request/mensagem (2 linhas):
 
 
 *3 linhas de lógica por ponto de integração.* Menos que configurar retry,
-circuit breaker, ou rate limiting — e com benefício imediato para debugging.
+circuit breaker, ou rate limiting - e com benefício imediato para debugging.
 
 === O que você ganha de volta?
 
@@ -246,7 +246,7 @@ circuit breaker, ou rate limiting — e com benefício imediato para debugging.
 
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
-  *É mais simples que configurar NTP corretamente — e mais confiável.* Mais barato que distributed tracing, mais informativo que correlation IDs, e complementar a ambos.
+  *É mais simples que configurar NTP corretamente - e mais confiável.* Mais barato que distributed tracing, mais informativo que correlation IDs, e complementar a ambos.
 ]
 
 
@@ -431,7 +431,7 @@ Dado o seguinte fluxo:
   [JSON transport],
   [Campo `_causality` embutido no payload JSON],
   [Agnóstico],
-  [SDK não depende de frameworks — trabalha com tipos std],
+  [SDK não depende de frameworks - trabalha com tipos std],
 )
 
 
@@ -442,5 +442,5 @@ Dado o seguinte fluxo:
 
 
 - Sigelman et al. (2010). *Dapper, a Large-Scale Distributed Systems Tracing Infrastructure.* Google.
-- Coulouris et al. (2012), Seção 14.5 — "Global states and consistent cuts"
-- Kleppmann (2017), Cap. 8 — propagação de contexto em sistemas distribuídos
+- Coulouris et al. (2012), Seção 14.5 - "Global states and consistent cuts"
+- Kleppmann (2017), Cap. 8 - propagação de contexto em sistemas distribuídos

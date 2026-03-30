@@ -3,7 +3,7 @@
 #set heading(numbering: "1.1")
 #set par(justify: true)
 
-= Módulo 06 — Hands-on: Exercícios Práticos
+= Módulo 06: Hands-on: Exercícios Práticos
 
 
 #line(length: 100%, stroke: 0.5pt + luma(200))
@@ -18,7 +18,7 @@ baseados em problemas clássicos de sistemas distribuídos.
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Exercício A — Lamport Clock: ordenação de eventos (15 min)
+== Exercício A: Lamport Clock: ordenação de eventos (15 min)
 
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
@@ -55,7 +55,7 @@ P1          P2          P3
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Exercício B — Vector Clock: detecção de causalidade (20 min)
+== Exercício B: Vector Clock: detecção de causalidade (20 min)
 
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
@@ -83,11 +83,11 @@ Usando o *mesmo diagrama* do Exercício A, agora com Vector Clocks:
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Exercício C — Cenário prático: detecção de conflito (15 min)
+== Exercício C: Cenário prático: detecção de conflito (15 min)
 
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
-  Inspirado no Amazon Dynamo — DeCandia et al. (2007), Seção 4.4.
+  Inspirado no Amazon Dynamo - DeCandia et al. (2007), Seção 4.4.
 ]
 
 
@@ -126,7 +126,7 @@ Sequência de eventos:
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Exercício D — Corte consistente (20 min)
+== Exercício D: Corte consistente (20 min)
 
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
@@ -166,7 +166,7 @@ P3:  --i------j------k------l--
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
 
-== Exercício E — Cenário completo: e-commerce (30 min)
+== Exercício E: Cenário completo: e-commerce (30 min)
 
 
 #block(inset: (left: 1em), fill: luma(245), radius: 4pt, width: 100%)[
@@ -301,7 +301,7 @@ implementação que economiza *dias* de debugging.
   [02],
   [Lamport Clock: simples, ordem total, não detecta ∥],
   [03],
-  [CausalityRelation: →, ←, ∥, = — as 4 relações possíveis],
+  [CausalityRelation: →, ←, ∥, = - as 4 relações possíveis],
   [04],
   [Vector Clock: completo, detecta ∥, mas O(N) por mensagem],
   [05],
@@ -317,11 +317,11 @@ implementação que economiza *dias* de debugging.
 == Para ir além
 
 
-- Ler o paper original: Lamport (1978) — 8 páginas, surpreendentemente acessível
-- *CRDTs* — Conflict-free Replicated Data Types (Shapiro et al., 2011)
-- *Hybrid Logical Clocks* — Kulkarni et al. (2014)
-- *Interval Tree Clocks* — Almeida et al. (2008)
-- *Designing Data-Intensive Applications* — Kleppmann (2017), Caps. 5, 8, 9
+- Ler o paper original: Lamport (1978) - 8 páginas, surpreendentemente acessível
+- *CRDTs* - Conflict-free Replicated Data Types (Shapiro et al., 2011)
+- *Hybrid Logical Clocks* - Kulkarni et al. (2014)
+- *Interval Tree Clocks* - Almeida et al. (2008)
+- *Designing Data-Intensive Applications* - Kleppmann (2017), Caps. 5, 8, 9
 
 #line(length: 100%, stroke: 0.5pt + luma(200))
 
