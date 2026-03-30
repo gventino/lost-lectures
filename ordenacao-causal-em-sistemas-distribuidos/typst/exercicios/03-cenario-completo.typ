@@ -119,7 +119,7 @@ Desenhe o fluxo entre 3-5 serviços/componentes principais.
   [Webhook externo],
   [JSON (`_causality`)],
   [Payload autocontido],
-  [gRPC],
+  [gRPC (Remote Procedure Call)],
   [Binário (metadata)],
   [Nativo do protocolo],
 )
@@ -199,7 +199,7 @@ Sequência:
    o merge por união restaura A: {A, B, C}. O delete é "perdido".
    Solução: usar *tombstones* (marcadores de deleção) em vez de remover.
 
-   É por isso que o Amazon Dynamo mudou para usar CRDTs (OR-Set) em versões
+   É por isso que o Amazon Dynamo mudou para usar CRDTs (OR-Set, Observed-Remove Set) em versões
    mais recentes - CRDTs tratam remoções corretamente.
 
 ]

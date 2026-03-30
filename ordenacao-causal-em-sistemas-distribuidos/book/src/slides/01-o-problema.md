@@ -59,7 +59,7 @@ Na realidade: pedido → pagamento → estoque (nessa ordem).
 ### Cenário 1: "O log mentiu"
 
 Você recebe um alerta: "notificação enviada antes do pedido ser confirmado."
-Abre o Kibana, filtra por timestamp, e realmente parece que a notificação
+Abre o Grafana, filtra por timestamp, e realmente parece que a notificação
 veio primeiro. Você gasta **dois dias** investigando um bug que não existe.
 Os logs só estão **fora de ordem** porque as máquinas têm relógios diferentes.
 

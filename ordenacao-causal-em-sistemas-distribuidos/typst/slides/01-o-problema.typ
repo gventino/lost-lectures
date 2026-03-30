@@ -62,7 +62,7 @@ Na realidade: pedido → pagamento → estoque (nessa ordem).
 
 
 + *Clock drift* - relógios de hardware derivam ~10-100ms por dia
-+ *NTP não é perfeito* - sincronização tem latência e jitter
++ *NTP (Network Time Protocol) não é perfeito* - sincronização tem latência e jitter
 + *Sem garantia de precisão* - dois hosts nunca têm exatamente o mesmo tempo
 + *Leap seconds, DST, fusos* - complicam ainda mais
 
@@ -81,7 +81,7 @@ Na realidade: pedido → pagamento → estoque (nessa ordem).
 
 
 Você recebe um alerta: "notificação enviada antes do pedido ser confirmado."
-Abre o Kibana, filtra por timestamp, e realmente parece que a notificação
+Abre o Grafana, filtra por timestamp, e realmente parece que a notificação
 veio primeiro. Você gasta *dois dias* investigando um bug que não existe.
 Os logs só estão *fora de ordem* porque as máquinas têm relógios diferentes.
 

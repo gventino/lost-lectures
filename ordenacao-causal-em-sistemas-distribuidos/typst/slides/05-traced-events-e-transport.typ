@@ -47,9 +47,9 @@ Um TracedEvent associa *metadata causal* a qualquer evento de domínio:
 ```
 estrutura TracedEvent:
     tipo_evento   : texto              -- ex: "pedido.criado"
-    payload       : bytes              -- corpo do evento (opaco para o SDK)
+    payload       : bytes              -- corpo do evento (opaco para o SDK, Software Development Kit)
     causalidade   : VectorTimestamp    -- snapshot do vector clock
-    id_evento     : texto              -- UUID v7 (ordenável por tempo)
+    id_evento     : texto              -- UUID, Universally Unique Identifier, v7 (ordenável por tempo)
     timestamp_utc : texto (opcional)   -- ISO 8601, apenas informativo
 ```
 

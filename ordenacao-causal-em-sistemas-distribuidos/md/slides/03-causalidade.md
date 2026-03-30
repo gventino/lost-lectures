@@ -194,7 +194,7 @@ função COMPARAR(V_a, V_b):
 Em sistemas distribuídos, detectar concorrência permite:
 
 - **Detecção de conflitos** - duas escritas simultâneas no mesmo recurso
-- **Estratégias de merge** - CRDTs, operational transform
+- **Estratégias de merge** - CRDTs (Conflict-free Replicated Data Types), operational transform
 - **Alertas** - "estes dois serviços escreveram ao mesmo tempo"
 - **Debugging** - "este bug é um race condition, não um bug de lógica"
 
@@ -208,7 +208,7 @@ você provavelmente usa uma dessas estratégias:
 
 | Estratégia atual          | Problema                                          |
 |---------------------------|---------------------------------------------------|
-| Last-write-wins (LWW)     | Quem "ganha" depende do clock da máquina          |
+| Last-Write-Wins (LWW)     | Quem "ganha" depende do clock da máquina          |
 | Lock distribuído (Redis)   | Adiciona ponto de falha + latência                |
 | Fila única (Kafka)         | Serializa tudo, perde throughput                   |
 | Ignorar (...)              | Bug intermitente que ninguém consegue reproduzir   |
