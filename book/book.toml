@@ -1,0 +1,12 @@
+[book]
+title = "Lost Lectures"
+authors = ["gventino"]
+language = "pt-BR"
+
+[build]
+build-dir = "build"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "ayu"
+additional-css = ["theme/custom.css"]

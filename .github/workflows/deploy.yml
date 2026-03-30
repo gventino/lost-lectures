@@ -25,10 +25,16 @@ jobs:
         with:
           mdbook-version: 'latest'
 
-      - name: Build all books
+      - name: Build root book (home)
         run: |
-          mkdir -p _site
+          cd book
+          mdbook build
+          cp -r build/ ../_site/
+
+      - name: Build class books
+        run: |
           for bookdir in */book; do
+            [ "$bookdir" = "book" ] && continue
             class=$(dirname "$bookdir")
             echo "Building $class..."
             cd "$bookdir"
@@ -36,39 +42,6 @@ jobs:
             cp -r build/ "../../_site/$class/"
             cd ../..
           done
-
-      - name: Generate index page
-        run: |
-          cat > _site/index.html << 'HTML'
-          <!DOCTYPE html>
-          <html lang="pt-BR">
-          <head>
-            <meta charset="utf-8">
-            <title>Lost Lectures</title>
-            <style>
-              body { font-family: system-ui, sans-serif; max-width: 640px; margin: 4rem auto; padding: 0 1rem; color: #1a1a1a; }
-              h1 { font-size: 1.8rem; }
-              a { color: #2563eb; text-decoration: none; }
-              a:hover { text-decoration: underline; }
-              ul { list-style: none; padding: 0; }
-              li { margin: 0.75rem 0; font-size: 1.1rem; }
-            </style>
-          </head>
-          <body>
-            <h1>Lost Lectures</h1>
-            <ul>
-          HTML
-          for dir in _site/*/; do
-            name=$(basename "$dir")
-            [ "$name" = "." ] && continue
-            title=$(echo "$name" | tr '-' ' ' | sed 's/\b\(.\)/\u\1/g')
-            echo "      <li><a href=\"$name/\">$title</a></li>" >> _site/index.html
-          done
-          cat >> _site/index.html << 'HTML'
-            </ul>
-          </body>
-          </html>
-          HTML
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
