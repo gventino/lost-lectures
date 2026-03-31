@@ -62,6 +62,7 @@ função CRIAR_EVENTO(tipo, payload, vector_clock):
 ```
 
 Exemplo:
+
 ```
 vc = NOVO_VECTOR_CLOCK("serviço-pedidos", ["pagamento", "estoque"])
 TICK(vc)
@@ -88,6 +89,7 @@ função EVENTO_PARA_HEADERS(evento):
 ```
 
 Exemplo de headers gerados:
+
 ```
 X-Causality-Vector:    estoque=0,pagamento=0,serviço-pedidos=1
 X-Causality-EventId:   019476a0-b1c2-7d3e-a4f5-...
@@ -116,6 +118,7 @@ função HEADERS_PARA_EVENTO(headers, payload):
 ```
 
 No serviço que recebe:
+
 ```
 evento_recebido = HEADERS_PARA_EVENTO(headers_da_requisição, corpo)
 RECEBER(meu_clock, evento_recebido.causalidade)
@@ -124,7 +127,7 @@ RECEBER(meu_clock, evento_recebido.causalidade)
 
 ---
 
-## A camada de Transport
+## A camada de Transporte
 
 O SDK é **agnóstico a frameworks**. Não depende de bibliotecas HTTP, Kafka ou gRPC.
 Trabalha com tipos genéricos:
@@ -215,6 +218,7 @@ função EXTRAIR_VETOR_TEXTO(headers):
 ```
 
 Exemplo de integração com um framework HTTP:
+
 ```
 -- Enviando (qualquer cliente HTTP)
 headers_causais = {}
@@ -273,6 +277,7 @@ função EXTRAIR_CAUSALIDADE_JSON(json):
 ```
 
 Exemplo de payload enriquecido:
+
 ```json
 {
   "pedido_id": 42,
@@ -312,6 +317,7 @@ Dado o seguinte fluxo:
 **Pergunta:** Quais funções de transport cada serviço usa?
 
 **Resposta:**
+
 1. Pedidos: `INJETAR_VETOR_TEXTO` (HTTP saída)
 2. Pagamento: `EXTRAIR_VETOR_TEXTO` (HTTP entrada) + `INJETAR_VETOR_BINÁRIO` (Kafka saída)
 3. Estoque: `EXTRAIR_VETOR_BINÁRIO` (Kafka entrada)

@@ -98,10 +98,10 @@ função RECEBER(vc, timestamp_recebido):
   {a:0,b:0,c:0}     {a:0,b:0,c:0}     {a:0,b:0,c:0}
        |                  |                  |
   TICK |                  |                  |
-  {a:1,b:0,c:0}          |                  |
+  {a:1,b:0,c:0}           |                  |
        |                  |                  |
 ENVIAR |----------------->|                  |
-  {a:2,b:0,c:0}     RECEBER                 |
+  {a:2,b:0,c:0}     RECEBER                  |
        |            max + tick               |
        |            {a:2,b:1,c:0}            |
        |                  |                  |
@@ -111,11 +111,12 @@ ENVIAR |----------------->|                  |
        |                  |            {a:2,b:2,c:1}
        |                  |                  |
   TICK |                  |                  |
-  {a:3,b:0,c:0}          |                  |
+  {a:3,b:0,c:0}           |                  |
        |                  |                  |
 ```
 
 Agora compare:
+
 - svc-a `{a:3,b:0,c:0}` vs svc-c `{a:2,b:2,c:1}`
 - a[a]=3 > c[a]=2, mas a[b]=0 < c[b]=2 → **Concurrent!** Sim
 
@@ -194,6 +195,7 @@ vc_a.vetores = { svc-a: 3, svc-b: 1, svc-d: 3 }
 > *interval tree clocks* no Cap. 5, pp. 184–186.
 >
 > O Amazon Dynamo usa vector clocks truncados para lidar com escala
+>
 > - vide DeCandia et al. (2007), Seção 4.4.
 
 ---
@@ -240,19 +242,21 @@ Simule no papel com 3 processos (P1, P2, P3):
 ```
 1. P1.TICK()                        → P1 = {P1:1, P2:0, P3:0}
 2. P2.TICK()                        → P2 = {P1:0, P2:1, P3:0}
-3. P1.ENVIAR() → P3.RECEBER()      → P1 = {P1:2, P2:0, P3:0}
+3. P1.ENVIAR() → P3.RECEBER()       → P1 = {P1:2, P2:0, P3:0}
                                       P3 = {P1:2, P2:0, P3:1}
-4. P2.ENVIAR() → P3.RECEBER()      → P2 = {P1:0, P2:2, P3:0}
+4. P2.ENVIAR() → P3.RECEBER()       → P2 = {P1:0, P2:2, P3:0}
                                       P3 = {P1:2, P2:2, P3:2}
 5. P1.TICK()                        → P1 = {P1:3, P2:0, P3:0}
 ```
 
 **Perguntas:**
+
 1. Qual a relação entre P1 (final) e P3 (final)?
 2. Qual a relação entre P2 (final) e P3 (final)?
 3. P3 "sabe" que P1 e P2 existiram?
 
 **Respostas:**
+
 1. **Concurrent** - P1[P1]=3 > P3[P1]=2, mas P1[P2]=0 < P3[P2]=2
 2. **HappensBefore** - P2 ≤ P3 em todas as dimensões, com P1 e P3 estritamente menor
 3. Sim! P3 tem {P1:2, P2:2, P3:2} - sabe que viu 2 eventos de P1 e 2 de P2

@@ -167,21 +167,21 @@ V(a) vs V(b) -------------+- a[i] ≤ b[i] ∀i ------> HAPPENS_BEFORE
 ### Pseudocódigo
 
 ```
-função COMPARAR(V_a, V_b):
-    a_leq_b ← verdadeiro     -- a[i] ≤ b[i] para todo i?
-    b_leq_a ← verdadeiro     -- b[i] ≤ a[i] para todo i?
+função COMPARAR(Va, Vb):
+    a <= b ← verdadeiro     -- a[i] ≤ b[i] para todo i?
+    b <= a ← verdadeiro     -- b[i] ≤ a[i] para todo i?
 
-    para cada nó N em (chaves de V_a ∪ chaves de V_b):
-        va ← V_a[N] ou 0 se ausente
-        vb ← V_b[N] ou 0 se ausente
+    para cada nó N em (chaves de Va ∪ chaves de Vb):
+        va ← Va[N] ou 0 se ausente
+        vb ← Vb[N] ou 0 se ausente
 
-        se va > vb:  a_leq_b ← falso
-        se vb > va:  b_leq_a ← falso
+        se va > vb:  a <= b ← falso
+        se vb > va:  b <= a ← falso
 
-    se a_leq_b e b_leq_a:     retornar EQUAL
-    se a_leq_b e ¬b_leq_a:    retornar HAPPENS_BEFORE
-    se ¬a_leq_b e b_leq_a:    retornar HAPPENS_AFTER
-    se ¬a_leq_b e ¬b_leq_a:   retornar CONCURRENT
+    se a <= b e b <= a:     retornar EQUAL
+    se a <= b e ¬b <= a:    retornar HAPPENS_BEFORE
+    se ¬a <= b e b <= a:    retornar HAPPENS_AFTER
+    se ¬a <= b e ¬b <= a:   retornar CONCURRENT
 ```
 
 > Algoritmo descrito em Mattern (1989), Seção 3, e formalizado em
@@ -232,12 +232,14 @@ V(c) = {P1: 4, P2: 1, P3: 3}
 ```
 
 Determine:
+
 1. `COMPARAR(a, b)` = ?
 2. `COMPARAR(b, a)` = ?
 3. `COMPARAR(a, c)` = ?
 4. `COMPARAR(b, c)` = ?
 
 **Respostas:**
+
 1. HAPPENS_BEFORE (a ≤ b em todas as dimensões, com P2 e P3 estritamente menor)
 2. HAPPENS_AFTER (inverso do anterior)
 3. CONCURRENT (P1: 3<4 mas P2: 2>1)

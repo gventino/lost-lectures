@@ -62,7 +62,7 @@ Processo A          Processo B          Processo C
     +- send ----------> +- receive          |
     |  t=2              |  max(0,2)+1 = 3   |
     |                   |                   |
-    |                   +- tick (4)          |
+    |                   +- tick (4)         |
     |                   |                   |
     |                   +- send ----------> +- receive
     |                   |  t=5              |  max(0,5)+1 = 6
@@ -72,6 +72,7 @@ Processo A          Processo B          Processo C
 ```
 
 A → B: `C(A_send) = 2 < C(B_receive) = 3` Sim
+
 B → C: `C(B_send) = 5 < C(C_receive) = 6` Sim
 
 ---
@@ -118,6 +119,7 @@ função RECEBER(clock, timestamp):
 **Serialização texto:** `"nome-do-processo:42"`
 
 **Ordem total determinística:**
+
 ```
 função COMPARAR(ts_a, ts_b):
     se ts_a.tempo ≠ ts_b.tempo:
