@@ -3,6 +3,7 @@ title = "Ordenação Causal em Sistemas Distribuídos"
 authors = ["gventino"]
 language = "pt-BR"
 description = "Aula sobre relógios lógicos, vector clocks e causalidade em sistemas distribuídos, baseada no paper de Leslie Lamport (1978)."
+src = "../md"
 
 [build]
 build-dir = "build"

@@ -19,7 +19,7 @@ Dados dois eventos `a` e `b`:
 +-----------------+------------------------------------------+--------+
 | HappensBefore   | a causou b (caminho causal de a → b)     |   →    |
 | HappensAfter    | b causou a (caminho causal de b → a)     |   ←    |
-| Concurrent      | Nenhum causou o outro (independentes)    |   ∥    |
+| Concurrent      | Nenhum causou o outro (independentes)    |   ||   |
 | Equal           | Mesmo estado causal (mesmo vetor)        |   =    |
 └-----------------+------------------------------------------+--------┘
 ```
@@ -34,10 +34,10 @@ Dados dois eventos `a` e `b`:
 
 ```
 enumeração CausalityRelation:
-    HAPPENS_BEFORE    -- a → b
-    HAPPENS_AFTER     -- b → a
-    CONCURRENT        -- a ∥ b
-    EQUAL             -- a = b
+    HAPPENS_BEFORE    -- a  → b
+    HAPPENS_AFTER     -- b  → a
+    CONCURRENT        -- a || b
+    EQUAL             -- a  = b
 ```
 
 ---
@@ -168,20 +168,20 @@ V(a) vs V(b) -------------+- a[i] ≤ b[i] ∀i ------> HAPPENS_BEFORE
 
 ```
 função COMPARAR(Va, Vb):
-    a <= b ← verdadeiro     -- a[i] ≤ b[i] para todo i?
-    b <= a ← verdadeiro     -- b[i] ≤ a[i] para todo i?
+    a ≤ b ← verdadeiro     -- a[i] ≤ b[i] para todo i?
+    b ≤ a ← verdadeiro     -- b[i] ≤ a[i] para todo i?
 
     para cada nó N em (chaves de Va ∪ chaves de Vb):
         va ← Va[N] ou 0 se ausente
         vb ← Vb[N] ou 0 se ausente
 
-        se va > vb:  a <= b ← falso
-        se vb > va:  b <= a ← falso
+        se va > vb:  a ≤ b ← falso
+        se vb > va:  b ≤ a ← falso
 
-    se a <= b e b <= a:     retornar EQUAL
-    se a <= b e ¬b <= a:    retornar HAPPENS_BEFORE
-    se ¬a <= b e b <= a:    retornar HAPPENS_AFTER
-    se ¬a <= b e ¬b <= a:   retornar CONCURRENT
+    se a ≤  b e b ≤  a:     retornar EQUAL
+    se a ≤  b e ¬b ≤  a:    retornar HAPPENS_BEFORE
+    se ¬a ≤  b e b ≤  a:    retornar HAPPENS_AFTER
+    se ¬a ≤  b e ¬b ≤  a:   retornar CONCURRENT
 ```
 
 > Algoritmo descrito em Mattern (1989), Seção 3, e formalizado em
