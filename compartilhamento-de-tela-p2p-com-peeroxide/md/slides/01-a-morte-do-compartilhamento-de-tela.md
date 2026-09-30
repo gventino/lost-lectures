@@ -55,13 +55,6 @@ Segundo a Central de Ajuda do próprio Discord:
 > Fonte: Discord, *Por que os recursos de vídeo estão indisponíveis no Brasil no momento*,
 > [Central de Ajuda](https://support.discord.com/hc/pt-br/articles/42704051358359-Por-que-os-recursos-de-v%C3%ADdeo-est%C3%A3o-indispon%C3%ADveis-no-Brasil-no-momento).
 
-Agora, uma leitura pessoal, que é opinião e não fato: estamos em época de eleição, e a
-medida me parece ter surgido como um jeito de o governo atual ganhar ibope, mostrando que se
-preocupa com o que acontece com jovens e adolescentes na internet e que está ciente dos
-problemas. Minha aposta é que, passada a eleição, as coisas voltem a ser como eram, como se
-nada tivesse acontecido, sem que isso vire controles mais rigorosos para a presença online
-de crianças e adolescentes, um monitoramento melhor ou algo do tipo.
-
 ---
 
 ## O que fez falta de verdade
