@@ -1,4 +1,4 @@
-# Módulo 05: Cada Recurso, Por Dentro
+# Módulo 05: Por Dentro de Cada Feature
 
 ---
 

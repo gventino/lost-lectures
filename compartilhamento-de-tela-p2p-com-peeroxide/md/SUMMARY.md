@@ -10,7 +10,7 @@
 - [As Gambiarras](./slides/02-as-gambiarras.md)
 - [E se Fosse Descentralizado?](./slides/03-e-se-fosse-descentralizado.md)
 - [De Ponta a Ponta](./slides/04-de-ponta-a-ponta.md)
-- [Cada Recurso, Por Dentro](./slides/05-cada-recurso.md)
+- [Por Dentro de Cada Feature](./slides/05-por-dentro-de-cada-feature.md)
 - [Crates e Bibliotecas](./slides/06-crates-e-bibliotecas.md)
 - [Por que é Seguro (e Onde Ainda Não é)](./slides/07-por-que-e-seguro.md)
 - [Atualização Segura](./slides/08-atualizacao-segura.md)
