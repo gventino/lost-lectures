@@ -68,7 +68,7 @@ nova não apaga a escolha de ninguém.
 
 ---
 
-## Transmitir: o codec é escolhido sozinho
+## Transmitir: o codec
 
 | Situação                                          | Codec usado                                   |
 |---------------------------------------------------|-----------------------------------------------|
