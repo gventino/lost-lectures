@@ -8,7 +8,7 @@
 
 - [A Morte do Compartilhamento de Tela](./slides/01-a-morte-do-compartilhamento-de-tela.md)
 - [As Gambiarras](./slides/02-as-gambiarras.md)
-- [E se Fosse Torrent?](./slides/03-e-se-fosse-torrent.md)
+- [E se Fosse Descentralizado?](./slides/03-e-se-fosse-descentralizado.md)
 - [De Ponta a Ponta](./slides/04-de-ponta-a-ponta.md)
 - [Cada Recurso, Por Dentro](./slides/05-cada-recurso.md)
 - [Crates e Bibliotecas](./slides/06-crates-e-bibliotecas.md)

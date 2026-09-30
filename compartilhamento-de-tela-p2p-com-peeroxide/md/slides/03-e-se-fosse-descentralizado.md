@@ -1,4 +1,4 @@
-# Módulo 03: E se Fosse Torrent?
+# Módulo 03: E se Fosse Descentralizado?
 
 ---
 
