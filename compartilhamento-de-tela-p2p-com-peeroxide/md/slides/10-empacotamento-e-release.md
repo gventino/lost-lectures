@@ -230,7 +230,7 @@ ao SmartScreen; a reputação ainda se constrói com downloads.
 
 ---
 
-## Próximo episódio
+## Próximo Módulo
 
 Tudo funciona, assinado e testado. Na rede de casa. Só que a galera mora em cidades
 diferentes. Último módulo: levar o Peeroxide para a internet sem colocar ninguém no

@@ -247,7 +247,7 @@ E estão no roadmap.
 
 ---
 
-## Próximo episódio
+## Próximo Módulo
 
 Existe uma ameaça que nenhuma dessas defesas cobre: e se o ataque vier **dentro do próprio
 Peeroxide**? Um app que se atualiza sozinho executa, por definição, código novo baixado da

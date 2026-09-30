@@ -198,7 +198,7 @@ Existe só a esperança de que ele não queira.
 
 ---
 
-## Próximo episódio
+## Próximo Módulo
 
 Depois de mais uma noite fechando anúncio no meio do filme, a pergunta mudou de
 "o que mais dá para usar?" para "por que isso precisa de um intermediário?".

@@ -259,7 +259,7 @@ E à mão, numa máquina: a 0.4.99 se atualizou para a 0.5.0 em ~2 s e reiniciou
 
 ---
 
-## Próximo episódio
+## Próximo Módulo
 
 Assinar o release garante que o código é meu. Não garante que o código **funciona**.
 No próximo módulo: como o Peeroxide é testado, do teste unitário ao smoke test antes de

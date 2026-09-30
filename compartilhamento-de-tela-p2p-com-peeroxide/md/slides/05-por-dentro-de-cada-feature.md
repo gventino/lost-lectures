@@ -307,7 +307,7 @@ conexão para fora da sua rede é a checagem de atualização ao abrir (Módulo 
 
 ---
 
-## Próximo episódio
+## Próximo Módulo
 
 Cada recurso aqui se apoia em alguém: uma crate, uma biblioteca em C, uma API do sistema.
 No próximo módulo, a lista completa de quem faz o quê, e por que foram escolhidos.

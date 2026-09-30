@@ -273,7 +273,7 @@ Documentado no README e no roadmap, sem letras miúdas.
 
 ---
 
-## Próximo episódio
+## Próximo Módulo
 
 Chegou a hora da pergunta do Módulo 01, agora aplicada ao próprio Peeroxide:
 em quem você está confiando quando compartilha sua tela com ele? E, tão importante quanto,

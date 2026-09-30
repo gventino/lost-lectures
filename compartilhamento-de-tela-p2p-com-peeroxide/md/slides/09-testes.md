@@ -253,7 +253,7 @@ Os dois estão no Módulo 10.
 
 ---
 
-## Próximo episódio
+## Próximo Módulo
 
 O smoke test roda no zip. Mas de onde vem o zip? No próximo módulo: como um workspace Rust
 vira um único executável sem instalador, assinado, com licenças e checksums, publicado de

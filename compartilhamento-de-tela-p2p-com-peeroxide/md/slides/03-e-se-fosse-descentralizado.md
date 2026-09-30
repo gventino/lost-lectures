@@ -216,7 +216,7 @@ Antes de ver como ficou, vale escrever como **deveria** ser:
 
 ---
 
-## Próximo episódio
+## Próximo Módulo
 
 Chega de teoria. No próximo módulo, a gente segue um único quadro do vídeo, do momento
 em que alguém clica em **Start broadcasting** até ele aparecer na tela de um amigo.

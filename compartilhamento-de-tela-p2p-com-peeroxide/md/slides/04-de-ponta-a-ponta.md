@@ -403,7 +403,7 @@ Pela internet, o upload de casa decide: é por isso que existe o preset **Intern
 
 ---
 
-## Próximo episódio
+## Próximo Módulo
 
 Agora que o quadro chegou do outro lado, vamos olhar para o que a galera realmente usa:
 cada botão, cada caixinha, e o que acontece por trás de cada um.

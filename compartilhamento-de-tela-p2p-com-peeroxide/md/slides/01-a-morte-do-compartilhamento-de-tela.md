@@ -163,7 +163,7 @@ Guarde esse formato. Nos próximos módulos, ele vai ficando bem mais feio antes
 
 ---
 
-## Próximo episódio
+## Próximo Módulo
 
 A galera não ia ficar sem watch party. O que veio a seguir foi criatividade pura,
 disposição de sobra e segurança nenhuma.
