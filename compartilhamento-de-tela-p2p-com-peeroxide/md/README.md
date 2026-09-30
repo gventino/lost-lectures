@@ -39,8 +39,8 @@ Cada módulo abre com **"Onde a gente parou"** e fecha com **"Próximo Módulo"*
 
 ### Livros-texto
 16. Shostack, A. (2014). *Threat Modeling: Designing for Security.* Wiley.
-17. Kurose, J. F. & Ross, K. W. (2021). *Computer Networking: A Top-Down Approach.* 8th ed. Pearson. Caps. 2 e 8.
-18. Tanenbaum, A. S. & Van Steen, M. (2017). *Distributed Systems.* 3rd ed. Caps. 2 e 9.
+17. Kurose, J. F. & Ross, K. W. (2021). *Computer Networking: A Top-Down Approach.* 8th ed. Pearson.
+18. Tanenbaum, A. S. & Van Steen, M. (2017). *Distributed Systems.* 3rd ed.
 
 ### Na web
 19. Anderson, D. (2020). *How NAT traversal works.* Blog do Tailscale.
