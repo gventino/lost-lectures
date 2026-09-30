@@ -1,0 +1,15 @@
+[book]
+title = "Peeroxide: Compartilhamento de Tela P2P Sem Servidor"
+authors = ["gventino"]
+language = "pt-BR"
+description = "Como a suspensão do vídeo no Discord virou um compartilhador de tela peer-to-peer, criptografado e sem servidor, escrito em Rust: arquitetura, recursos, segurança, atualização assinada, testes, empacotamento e uso pela internet com Headscale."
+src = "../md"
+
+[build]
+build-dir = "build"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "ayu"
+git-repository-url = "https://github.com/gventino/peeroxide"
+additional-css = ["theme/custom.css"]
