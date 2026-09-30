@@ -14,6 +14,12 @@ Cada módulo abre com **"Onde a gente parou"** e fecha com **"Próximo Módulo"*
 
 > **Status do projeto:** o Peeroxide é **pre-alpha**. Funciona e é usado de verdade entre amigos, mas tem limitações conhecidas, e elas estão documentadas ao longo do texto, principalmente no Módulo 07. Código, requisitos, casos de abuso e roadmap: [github.com/gventino/peeroxide](https://github.com/gventino/peeroxide).
 
+> **Quer testar com a sua galera?** Baixe a versão mais recente na
+> [página de releases do Peeroxide](https://github.com/gventino/peeroxide/releases): é a
+> primeira da lista (hoje, a 0.6.1, para Windows e Linux). Basta descompactar e abrir, sem
+> instalar nada, e depois ele se atualiza sozinho. Curtiu? Manda para os amigos. É assim que
+> um app P2P cresce.
+
 ---
 
 ## Referências
