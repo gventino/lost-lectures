@@ -1,4 +1,4 @@
-# Módulo 01: O Dia em que a Câmera Desligou
+# Módulo 01: A Morte do Compartilhamento de Tela
 
 ---
 

@@ -6,7 +6,7 @@
 
 # Módulos
 
-- [O Dia em que a Câmera Desligou](./slides/01-o-dia-em-que-a-camera-desligou.md)
+- [A Morte do Compartilhamento de Tela](./slides/01-a-morte-do-compartilhamento-de-tela.md)
 - [As Gambiarras](./slides/02-as-gambiarras.md)
 - [E se Fosse Torrent?](./slides/03-e-se-fosse-torrent.md)
 - [De Ponta a Ponta](./slides/04-de-ponta-a-ponta.md)
