@@ -25,8 +25,8 @@ Um operador no meio: um único interruptor.
 ## 2. As três gambiarras (Módulo 02)
 
 ```
-VPS grátis:
-  PC da galera ===túnel===> [ VPS de dono desconhecido ] ---> Discord
+VPN grátis:
+  PC da galera ===túnel===> [ VPN de dono desconhecido ] ---> Discord
     vê: destinos, horários, volume, tudo sem TLS
 
 Proxy do Equador (proxy do sistema):
@@ -66,17 +66,28 @@ ALICE (transmite)                                      BOB (assiste)
 |                                                                  |
 | 1. identidade (certificado + chave)                              |
 | 2. porta UDP fixa (ex.: 57728)                                   |
+|                                                                  |
 | -------------- 3. anúncio mDNS --------------------------------> |
 |    _peeroxide._udp.local.  v=1  name=Alice  fp=<64 hex>          |
+|                                              4. valida o anúncio |
 |                                                                  |
 | <------------- 5. handshake QUIC + TLS 1.3 --------------------- |
+|                                      confere SHA-256(cert) == fp |
+|                                                                  |
 | <------------- 6. Hello { versão 3, "Bob" } -------------------- |
+|                                                                  |
 | -------------- 7. Welcome { "Alice", áudio: sim } -------------> |
+|                                                                  |
 | 8. primeiro espectador: captura e codificação ligam              |
+|                                                                  |
 | -------------- 9. stream de áudio (tipo 1) --------------------> |
+|                                                                  |
 | -------------- 10. stream de vídeo (tipo 0) -------------------> |
+|                                                                  |
 | <------------- RequestKeyframe (quando precisar) --------------- |
+|                                                                  |
 |                               ...                                |
+|                                                                  |
 | -------------- 11. close code: BroadcastStopped ---------------> |
 ```
 
@@ -117,7 +128,7 @@ stream de áudio --> fila --> Opus --> agendador (atrasa o áudio)
 
 ---
 
-## 7. A diferença que se cancela (Módulo 04)
+## 7. A conta que dispensa relógios sincronizados (Módulo 04)
 
 ```
 Δ = diferença desconhecida entre os relógios de Bob e de Alice

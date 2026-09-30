@@ -14,9 +14,10 @@ a pergunta que guia todo o resto deste material.
 
 Toda noite, o mesmo canal de voz.
 
-- Alguém abre o jogo e compartilha a tela; o resto palpita na jogada.
-- Alguém cola o link do episódio novo; todo mundo dá play junto e comenta por cima.
-- Alguém manda um vídeo do YouTube "de três minutos" que vira uma hora.
+- Alguém abre o jogo e compartilha a tela.
+- Alguém transmite o episódio novo da série do momento.
+- Alguém compartilha um vídeo do YouTube de três minutos que leva a uma discussão de
+  mais de uma hora.
 
 A galera mora em cidades diferentes. O Discord era menos um aplicativo e mais um
 **lugar**: a sala de estar de quem não mora perto.
@@ -31,7 +32,7 @@ O que fazia aquilo funcionar tinha nome:
 
 ---
 
-## 17 de agosto de 2026
+## O que mudou em 17 de agosto de 2026
 
 Segundo a Central de Ajuda do próprio Discord:
 
@@ -56,9 +57,9 @@ Segundo a Central de Ajuda do próprio Discord:
 
 ---
 
-## O que a gente perdeu, de verdade
+## O que fez falta de verdade
 
-A voz continuou. Dava para conversar, rir, xingar o time adversário.
+A voz continuou. Dava para conversar, rir, se xingar (com carinho, óbvio).
 O que sumiu foi uma coisa bem específica:
 
 > **A tela de uma pessoa chegando na tela de todas as outras, ao mesmo tempo.**
@@ -68,7 +69,7 @@ o meu ainda tá carregando", e o jogo vira narração de rádio.
 
 ---
 
-## Olhando como engenheiro: por onde passava o vídeo
+## Por onde o vídeo passava
 
 No Go Live, o vídeo não vai direto do seu PC para o PC dos seus amigos.
 Ele sobe para a infraestrutura do Discord, e de lá é distribuído para quem está assistindo:

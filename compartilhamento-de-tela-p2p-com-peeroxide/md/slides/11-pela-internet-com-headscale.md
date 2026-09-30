@@ -39,7 +39,7 @@ rede compartilhada, e para o Peeroxide é como se todos estivessem no mesmo swit
 
 ---
 
-## As opções
+## As opções de rede virtual
 
 Em todas, alguém coordena; a diferença é quem, e por onde passa o vídeo. Na tabela, VPS é
 uma Virtual Private Server (um servidor alugado) e DERP (Designated Encrypted Relay for Packets)
@@ -159,7 +159,7 @@ direto na 443.
 
 ---
 
-## Passo 3: configurar
+## Passo 3: configurar o Headscale
 
 Em `/etc/headscale/config.yaml`, os campos que importam aqui:
 
@@ -199,7 +199,7 @@ sudo systemctl status headscale
 
 ---
 
-## Passo 4: usuário, chaves e política
+## Passo 4: usuário, chaves de acesso e política
 
 ```sh
 sudo headscale users create galera
@@ -259,7 +259,7 @@ sudo headscale nodes list
 
 ---
 
-## Passo 6: direto ou pelo relay?
+## Passo 6: a conexão é direta ou pelo relay?
 
 ```sh
 tailscale status
@@ -351,7 +351,7 @@ com controle total do Headscale consegue:
 
 ---
 
-## Checklist de endurecimento
+## Checklist de segurança da VPS
 
 - [ ] SSH só com chave; `PasswordAuthentication no`.
 - [ ] Atualizações de segurança automáticas (`unattended-upgrades`).
@@ -369,15 +369,15 @@ os PCs em geral continuam de pé; o que para é a entrada de nós novos e a prop
 
 ---
 
-## O placar de confiança, final
+## O placar de confiança final
 
 | Solução                    | Quem carrega o vídeo                          | Quem consegue ver                                  | Em quem você confia                                   | Custo                        | Se cair...                        |
 |----------------------------|-----------------------------------------------|----------------------------------------------------|-------------------------------------------------------|------------------------------|-----------------------------------|
 | Discord                    | Servidores do Discord                         | Quem está no canal                                 | Uma empresa conhecida                                 | Grátis                       | Ninguém transmite                 |
-| VPS grátis                 | Discord, via máquina de um estranho           | + o operador da VPS                                | Um desconhecido anônimo                               | "Grátis"                     | Caiu. Várias vezes                |
+| VPN grátis                 | Discord, via servidor de um estranho          | + o operador da VPN                                | Um desconhecido anônimo                               | "Grátis"                     | Bloqueada pelo Discord            |
 | Proxy do Equador           | Discord, via proxy público                    | + o dono do proxy, para todos os apps              | Um desconhecido, com todo o seu tráfego               | "Grátis"                     | Some sem aviso                    |
 | Site com anúncio           | O site (talvez)                               | O site, e quem ele quiser                          | O site, os anunciantes e os scripts deles             | Sua atenção e seus dados     | A sala acaba                      |
-| O ideal                    | Os PCs da galera, direto                      | Só quem você escolher                              | Na criptografia, e nos seus amigos                    | Zero                         | Só aquela transmissão para        |
+| O ideal                    | Os PCs da galera, direto                      | Só quem você escolher                              | Na sua rede, seja ela LAN ou VLAN (LAN virtual), e na criptografia                    | Zero                         | Só aquela transmissão para        |
 | Peeroxide (LAN)            | Os PCs, direto (QUIC + TLS 1.3)               | Quem alcança sua porta na rede (até a 0.7)         | Criptografia; ID fixado; TOFU; libde265 e OpenH264    | Zero                         | Só aquela transmissão para        |
 | **Peeroxide + Headscale**  | **Os PCs, direto (WireGuard + QUIC/TLS); DERP cifrado se preciso** | **A galera, e só quem a sua VPS deixar entrar (até a 0.7)** | **Criptografia; a sua VPS para "quem entra"** | **Uma VPS pequena e um domínio** | **Túneis existentes em geral seguem; ninguém novo entra** |
 
@@ -387,7 +387,7 @@ os PCs em geral continuam de pé; o que para é a entrada de nós novos e a prop
 
 Hoje, a noite da galera ficou assim: **voz no Discord**, que nunca deixou de funcionar,
 e **tela no Peeroxide**, com o Discord silenciado no áudio compartilhado para ninguém ouvir
-o próprio eco. Nenhum proxy, nenhum site, nenhuma VPS de desconhecido.
+o próprio eco. Nenhum proxy, nenhum site, nenhuma VPN de desconhecido.
 
 O que vem pela frente, segundo o [roadmap](https://github.com/gventino/peeroxide/blob/main/docs/roadmap.md):
 

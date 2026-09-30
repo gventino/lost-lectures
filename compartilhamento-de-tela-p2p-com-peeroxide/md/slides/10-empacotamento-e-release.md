@@ -78,7 +78,7 @@ Builds de teste levam um rótulo (`just package teste`) e ganham outro nome; o a
 
 ---
 
-## O pacote do Linux: dentro de um contêiner
+## O pacote do Linux, compilado num contêiner
 
 No Linux, o problema é outro: o binário depende da **glibc** do sistema onde foi compilado.
 Compilar num Arch atualizado geraria algo que não roda num Ubuntu de dois anos atrás.
@@ -127,7 +127,7 @@ No Linux, o mesmo comando só **adiciona** o pacote Linux a um release que já e
 
 ---
 
-## O GitHub de mentira: `just serve-release`
+## Um GitHub falso para testar: `just serve-release`
 
 Testar a atualização publicando no GitHub de verdade seria entregar um teste para a galera.
 Então o projeto tem um servidor que **finge ser o GitHub** na máquina local:

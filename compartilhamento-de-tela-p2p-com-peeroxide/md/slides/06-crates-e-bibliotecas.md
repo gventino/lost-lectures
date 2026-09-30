@@ -19,7 +19,7 @@ uma decisão de confiança: cada dependência é código de terceiros rodando no
 
 ---
 
-## O workspace
+## As crates do projeto
 
 Um workspace Cargo (edição 2024 do Rust), com uma crate por responsabilidade (NFR-12):
 
@@ -122,7 +122,7 @@ o codificador H.265 vem com o driver da placa de vídeo, que já está instalado
 
 ---
 
-## A libde265, de perto
+## A libde265 em detalhe
 
 Decodificar H.265 em todas as plataformas exigia um decodificador embutido.
 A escolha foi a **libde265**, e o jeito de integrá-la diz muito sobre o projeto:
@@ -149,7 +149,7 @@ A libde265 é **LGPL-3.0**: a licença dela viaja junto com o executável, no
 
 ---
 
-## O OpenH264, de perto
+## O OpenH264 em detalhe
 
 O H.264 é o plano B: funciona em qualquer máquina, na CPU (Central Processing Unit).
 
@@ -216,7 +216,7 @@ não como falha) e `ProtocolError`.
 
 ---
 
-## O fio condutor: Rust onde der, C só onde precisa
+## A regra geral: Rust onde der, C só onde precisa
 
 | Parte                         | Linguagem    | Por quê                                              |
 |-------------------------------|--------------|------------------------------------------------------|

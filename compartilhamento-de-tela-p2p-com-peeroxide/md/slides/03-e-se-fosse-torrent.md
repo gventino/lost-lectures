@@ -52,11 +52,11 @@ em quem está enviando.
 > Um peer malicioso pode no máximo desperdiçar sua banda; não consegue te entregar
 > um arquivo alterado.
 
-Guarde essa ideia. Ela é a espinha deste material.
+Guarde essa ideia. Ela é a espinha dorsal deste material.
 
 ---
 
-## Como os peers se acham
+## Como um peer encontra o outro
 
 Distribuir sem servidor é metade do problema. A outra metade é **descoberta**:
 
@@ -104,7 +104,7 @@ O vídeo vai do PC de quem transmite para o PC de quem assiste. Ponto.
 
 ---
 
-## Os quatro problemas
+## Os quatro problemas a resolver
 
 Qualquer compartilhador de tela P2P precisa resolver:
 
@@ -126,7 +126,7 @@ Kegel (2005) descrevem as técnicas clássicas para dois peers se falarem mesmo 
 
 O nome junta **peer** (par, como em peer-to-peer) com **oxide** (óxido, ferrugem:
 o projeto é em Rust, e a comunidade Rust chama reescrever algo na linguagem de
-"oxidar"). O logo é um píer enferrujado em pixel art ligando telas. Píer, peer.
+"oxidar"). O logo é um píer enferrujado em pixel art ligando telas. Píer, peer: soa parecido, sacou?
 
 Como o Peeroxide responde aos quatro problemas:
 
@@ -165,7 +165,7 @@ O Módulo 04 faz essa conta.
 
 ---
 
-## Dos requisitos ao código
+## Antes do código, os requisitos
 
 Antes da primeira linha de Rust, o projeto começou por documentos
 ([no repositório](https://github.com/gventino/peeroxide/tree/main/docs)):
@@ -177,9 +177,6 @@ Antes da primeira linha de Rust, o projeto começou por documentos
 | Casos de uso (UC)            | Transmitir, assistir, trocar de transmissão, atualizar                                   |
 | Casos de abuso (AC)          | AC-01 a AC-13, organizados por STRIDE (Módulo 07)                                        |
 
-O primeiro commit é de 22/09/2026. A versão 0.2 saiu no mesmo dia, ainda com o nome
-"P2P Screen Share". A primeira versão pública, já como Peeroxide, foi a 0.3, em 23/09.
-
 ---
 
 ## O placar de confiança
@@ -189,10 +186,10 @@ Antes de ver como ficou, vale escrever como **deveria** ser:
 | Solução             | Quem carrega o vídeo              | Quem consegue ver                         | Em quem você confia                         | Custo                    | Se cair...                  |
 |---------------------|-----------------------------------|-------------------------------------------|---------------------------------------------|--------------------------|-----------------------------|
 | Discord             | Servidores do Discord             | Quem está no canal                        | Uma empresa conhecida                       | Grátis                   | Ninguém transmite           |
-| VPS grátis          | Discord, via máquina de um estranho | + o operador da VPS                     | Um desconhecido anônimo                     | "Grátis"                 | Caiu. Várias vezes          |
+| VPN grátis          | Discord, via servidor de um estranho | + o operador da VPN                    | Um desconhecido anônimo                     | "Grátis"                 | Bloqueada pelo Discord      |
 | Proxy do Equador    | Discord, via proxy público        | + o dono do proxy, para todos os apps     | Um desconhecido, com todo o seu tráfego     | "Grátis"                 | Some sem aviso              |
 | Site com anúncio    | O site (talvez)                   | O site, e quem ele quiser                 | O site, os anunciantes e os scripts deles   | Sua atenção e seus dados | A sala acaba                |
-| **O ideal**         | **Os PCs da galera, direto**      | **Só quem você escolher**                 | **Na criptografia, e nos seus amigos**      | **Zero**                 | **Só aquela transmissão para** |
+| **O ideal**         | **Os PCs da galera, direto**      | **Só quem você escolher**                 | **Na sua rede, seja ela LAN (Local Area Network) ou VLAN (LAN virtual), e na criptografia**      | **Zero**                 | **Só aquela transmissão para** |
 
 ---
 

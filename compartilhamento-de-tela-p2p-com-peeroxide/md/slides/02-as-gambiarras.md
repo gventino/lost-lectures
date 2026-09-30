@@ -22,34 +22,36 @@ Foram três episódios, cada um pior que o anterior.
 
 ---
 
-## Episódio 1: a VPS grátis
+## Episódio 1: a VPN grátis
 
-Um amigo achou uma VPS (Virtual Private Server) grátis, dessas que aparecem em listas e
-fóruns, e a galera passou a usá-la como túnel para o Discord achar que estava fora do Brasil.
+Um amigo achou uma VPN (Virtual Private Network) grátis, dessas que aparecem em listas,
+fóruns e lojas de apps, e a galera passou a usá-la para o Discord achar que estava fora
+do Brasil.
 
 ```
 ┌-----------┐   túnel    ┌------------------------┐          ┌-----------┐
-| PC da     |===========>| VPS grátis             |--------->| Discord   |
+| PC da     |===========>| Servidor da VPN grátis |--------->| Discord   |
 | galera    |            | dono: ???              |          |           |
 └-----------┘            | logs: ???              |          └-----------┘
-                         | vai durar até: ???     |
+                         | modelo de negócio: ??? |
                          └------------------------┘
 ```
 
-Funcionou. Por um tempo. Até que parou de funcionar, sem aviso, do jeito que coisas
-grátis de dono desconhecido costumam parar.
+Funcionou, por um tempo. Até o Discord bloquear a VPN: ela continuava ligada, mas não
+servia mais para o que a gente precisava.
 
 ---
 
 ## Episódio 1: quem vê o quê
 
-Todo o tráfego que entra no túnel sai **pela máquina de outra pessoa**.
+Todo o tráfego que entra no túnel sai **pelo servidor de outra pessoa**. E, para isso,
+a galera instalou um app de desconhecidos com acesso à rede inteira do PC.
 
 | Poder    | Quem tem                     | Na prática                                                              |
 |----------|------------------------------|-------------------------------------------------------------------------|
-| Ver      | O operador da VPS            | Destinos, horários, volume; tudo que não estiver criptografado          |
-| Alterar  | O operador da VPS            | Pode injetar ou redirecionar tráfego que não esteja protegido por TLS (Transport Layer Security) |
-| Desligar | O operador, ou o provedor dele | E desligou                                                            |
+| Ver      | O operador da VPN            | Destinos, horários, volume; tudo que não estiver criptografado          |
+| Alterar  | O operador da VPN            | Pode injetar ou redirecionar tráfego que não esteja protegido por TLS (Transport Layer Security) |
+| Desligar | O operador da VPN, ou quem bloqueia a VPN | O Discord bloqueou, e ela parou de servir                  |
 
 O que o TLS do Discord protege: o **conteúdo** das conexões
 que já eram criptografadas. O que ele não protege: **quem você é, com quem fala e quando**.
@@ -62,7 +64,7 @@ coisa. Você não sabe, e esse é o problema.
 
 ## Episódio 2: o proxy do Equador
 
-Quando a VPS morreu, alguém achou uma lista de proxies públicos e configurou o
+Quando a VPN parou de servir, alguém achou uma lista de proxies públicos e configurou o
 **proxy do sistema** do Windows (Configurações > Rede e Internet > Proxy) apontando para
 um IP no Equador, com confidencialidade que, sendo generoso, era baixa.
 
@@ -150,13 +152,13 @@ Uma linha diferente e sua tela vai para outro lugar.
 | Solução             | Quem carrega o vídeo              | Quem consegue ver                         | Em quem você confia                         | Custo                    | Se cair...                  |
 |---------------------|-----------------------------------|-------------------------------------------|---------------------------------------------|--------------------------|-----------------------------|
 | Discord             | Servidores do Discord             | Quem está no canal                        | Uma empresa conhecida                       | Grátis                   | Ninguém transmite           |
-| VPS grátis          | Discord, via máquina de um estranho | + o operador da VPS (metadados e mais)  | Um desconhecido anônimo                     | "Grátis"                 | Caiu. Várias vezes          |
+| VPN grátis          | Discord, via servidor de um estranho | + o operador da VPN (metadados e mais) | Um desconhecido anônimo                     | "Grátis"                 | Bloqueada pelo Discord      |
 | Proxy do Equador    | Discord, via proxy público        | + o dono do proxy, **para todos os apps** | Um desconhecido, com todo o seu tráfego     | "Grátis"                 | Some sem aviso              |
 | Site com anúncio    | O site (talvez)                   | O site, e quem ele quiser                 | O site, os anunciantes e os scripts deles   | Sua atenção e seus dados | A sala acaba                |
 
 ---
 
-## O padrão
+## O que as três têm em comum
 
 As três gambiarras têm a mesma estrutura:
 
@@ -175,7 +177,7 @@ Existe só a esperança de que ele não queira.
 
 ## Discussão
 
-- Alguma dessas gambiarras já passou pela sua casa, ou pela de alguém da família?
+- Já viu alguma dessas gambiarras em uso por seus amigos?
 - Por que "é só para ver filme" não diminui o risco do proxy do sistema?
 - Um site que é *open source* resolve o problema do "código que muda a cada visita"?
   O que mais seria necessário?
@@ -187,7 +189,7 @@ Existe só a esperança de que ele não queira.
 
 | Conceito                  | O que é                                                                     |
 |---------------------------|-----------------------------------------------------------------------------|
-| Túnel por VPS de terceiros | Todo o tráfego sai pela máquina de outra pessoa                            |
+| VPN de terceiros          | Todo o tráfego sai pelo servidor de outra pessoa                            |
 | Proxy do sistema          | Vale para todos os programas, não só para o que você queria                  |
 | `CONNECT` e SNI           | Mesmo com HTTPS, o intermediário vê para quais sites você vai               |
 | Certificado raiz instalado | Permite ler até o HTTPS; nunca instale um a pedido de um intermediário     |

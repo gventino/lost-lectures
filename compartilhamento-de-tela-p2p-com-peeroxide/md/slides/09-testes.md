@@ -6,7 +6,7 @@
 
 Conhecer as camadas de teste do Peeroxide: os **testes automatizados** (inclusive sessões
 QUIC reais), o **CI** (Continuous Integration) em três sistemas, os **testes de hardware**
-que o CI não consegue rodar, as **ferramentas de sondagem**, o **checklist manual** e o
+que o CI não consegue rodar, as **ferramentas de diagnóstico**, o **checklist manual** e o
 **smoke test** que antecede cada release. E, com a mesma honestidade do Módulo 07, o que
 ainda não foi verificado.
 
@@ -22,7 +22,7 @@ Então: o que exatamente é testado, e como?
 
 ---
 
-## A pirâmide do Peeroxide
+## A pirâmide de testes
 
 ```
                   ┌-------------------------┐
@@ -67,7 +67,7 @@ O que eles cobrem, agrupado:
 
 ---
 
-## Testes de rede de verdade
+## Testes com rede de verdade
 
 Os testes da crate `net` sobem um **servidor QUIC real** (o transporte criptografado sobre UDP,
 User Datagram Protocol) em localhost e conectam
@@ -103,7 +103,7 @@ unknown_streams_are_refused_and_video_still_plays
 
 ---
 
-## Teste de lixo: entrada hostil é o caso normal
+## Testando com lixo: entrada hostil é o caso normal
 
 Um decodificador recebe bytes de outra máquina. O teste parte do princípio de que eles
 podem ser lixo:
@@ -142,7 +142,7 @@ Localmente, `just check` roda exatamente o que o CI roda.
 
 ---
 
-## O que o CI não consegue: `just test-hw`
+## O que o CI não consegue testar: `just test-hw`
 
 Alguns testes precisam de uma **placa de vídeo com codificador H.265**, ou medem **tempo**,
 e tempo medido em máquina compartilhada de CI não significa nada. Eles ficam marcados como
@@ -166,7 +166,7 @@ o tempo de codificação a 1080p, e as medições de tempo do canvas e das conve
 
 ---
 
-## Ferramentas de sondagem
+## Ferramentas de diagnóstico
 
 Três ferramentas de desenvolvedor, para olhar um pedaço do sistema isolado:
 
@@ -247,7 +247,7 @@ Os dois estão no Módulo 10.
 | 166 testes              | Qualquer máquina, CI       | Lógica, protocolo, sessões QUIC, atualização, entrada hostil |
 | CI                      | Windows, macOS, Linux      | Formatação, lint, testes; compilação multiplataforma |
 | `just test-hw`          | Máquina com GPU            | Codificador H.265, medições de tempo                |
-| Sondas e `just demo`    | Máquina de desenvolvimento | Uma parte isolada, ou tudo junto numa máquina       |
+| Diagnóstico e `just demo` | Máquina de desenvolvimento | Uma parte isolada, ou tudo junto numa máquina       |
 | Checklist manual        | Duas máquinas, VPN         | O que só aparece no uso real                        |
 | Smoke test              | O zip do release           | Erros de empacotamento                              |
 

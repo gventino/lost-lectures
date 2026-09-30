@@ -25,7 +25,7 @@ sempre na mesma versão, sem ninguém baixar zip à mão). E criou outro:
 
 ---
 
-## Os atacantes possíveis
+## Quem pode tentar atacar
 
 | Atacante                                         | O que tenta                                                           |
 |--------------------------------------------------|-----------------------------------------------------------------------|
@@ -37,7 +37,7 @@ sempre na mesma versão, sem ninguém baixar zip à mão). E criou outro:
 
 ---
 
-## O fluxo completo
+## A atualização, passo a passo
 
 ```
  Peeroxide abre
@@ -97,7 +97,7 @@ A chave atual tem o ID `1FAB31191B660C70`.
 
 ---
 
-## Replay: a assinatura precisa dizer "para qual arquivo"
+## Contra replay: a assinatura diz para qual arquivo é
 
 Uma assinatura válida prova "este arquivo foi assinado pela chave". Não prova "este arquivo
 é a versão 0.6.1". Um atacante poderia pegar o pacote **legítimo** da 0.5.0, com a assinatura
@@ -125,7 +125,7 @@ O pacote da 0.5.0 diz `file:peeroxide-0.5.0-windows-x64.zip`. Servido como 0.7.0
 
 ---
 
-## Downgrade: só para frente
+## Contra downgrade: só versões mais novas
 
 A escolha do release (`crates/update/src/select.rs`) segue regras simples:
 
@@ -139,7 +139,7 @@ Nunca se volta para uma versão mais antiga, nem que ela seja legítima e assina
 
 ---
 
-## Zip slip: o nome quem decide é o app
+## Contra zip slip: quem escolhe o nome do arquivo é o app
 
 Um zip pode conter entradas com caminhos como `../../Windows/System32/algo.dll`.
 Extrair "o zip" confiando nesses caminhos é uma vulnerabilidade clássica.
@@ -159,7 +159,7 @@ E a ordem importa: **nada é extraído antes de a assinatura conferir**.
 
 ---
 
-## Transporte: HTTPS de verdade
+## HTTPS de verdade no download
 
 - Só HTTPS. HTTP puro é recusado, com uma exceção: `127.0.0.1` e `localhost`, para o
   servidor de teste local (Módulo 10).
@@ -174,7 +174,7 @@ quem entregou. São duas camadas porque cada uma falha de um jeito diferente.
 
 ---
 
-## Falhar aberto: nunca atrapalhar
+## Se algo der errado, o app abre mesmo assim
 
 Uma atualização que impede o app de abrir é um ataque de negação de serviço feito por você mesmo.
 O requisito NFR-14 exige o contrário:
@@ -215,7 +215,7 @@ seu IP **real** de internet, não o da rede virtual.
 
 ---
 
-## Testado contra um GitHub de mentira
+## Testado contra um GitHub falso
 
 A crate `update` é testada contra um **servidor local que finge ser o GitHub**:
 

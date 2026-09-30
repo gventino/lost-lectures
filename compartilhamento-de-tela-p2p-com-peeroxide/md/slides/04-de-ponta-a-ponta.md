@@ -17,35 +17,41 @@ Network Address Translation) e como o Peeroxide
 responde a cada um, no papel. Agora é código rodando.
 
 Personagens deste módulo: **Alice**, que transmite, e **Bob**, que assiste. São os nomes dos
-perfis de demonstração do próprio projeto (`just demo`), não da galera.
+perfis de demonstração do próprio projeto (`just demo`).
 
 ---
 
-## O mapa completo
+## A sessão inteira num diagrama
 
 ```
 ALICE (transmite)                                      BOB (assiste)
 |                                                                  |
 | 1. identidade (certificado + chave)                              |
 | 2. porta UDP fixa (ex.: 57728)                                   |
+|                                                                  |
 | -------------- 3. anúncio mDNS --------------------------------> |
 |    _peeroxide._udp.local.  v=1  name=Alice  fp=<64 hex>          |
+|                                              4. valida o anúncio |
 |                                                                  |
 | <------------- 5. handshake QUIC + TLS 1.3 --------------------- |
+|                                      confere SHA-256(cert) == fp |
+|                                                                  |
 | <------------- 6. Hello { versão 3, "Bob" } -------------------- |
+|                                                                  |
 | -------------- 7. Welcome { "Alice", áudio: sim } -------------> |
+|                                                                  |
 | 8. primeiro espectador: captura e codificação ligam              |
+|                                                                  |
 | -------------- 9. stream de áudio (tipo 1) --------------------> |
+|                                                                  |
 | -------------- 10. stream de vídeo (tipo 0) -------------------> |
+|                                                                  |
 | <------------- RequestKeyframe (quando precisar) --------------- |
+|                                                                  |
 |                               ...                                |
+|                                                                  |
 | -------------- 11. close code: BroadcastStopped ---------------> |
 ```
-
-Do lado do Bob: (1) carrega a própria identidade; (4) "Alice 7ECA-C3F0" aparece
-na lista, com o anúncio validado; (5) confere SHA-256(cert) == fp; (9) toca o
-áudio com atraso calculado; (10) começa num keyframe; (11) mostra "Alice parou
-de transmitir".
 
 Vamos passo a passo.
 
@@ -67,7 +73,7 @@ com um amigo continua valendo depois de reiniciar o app.
 
 ---
 
-## Passo 3: anunciando no mDNS
+## Passo 3: o anúncio no mDNS
 
 O mDNS (Multicast DNS, a versão por multicast do DNS, Domain Name System; RFC 6762) é o mesmo mecanismo que faz impressoras e Chromecasts
 aparecerem sozinhos na rede. Com o DNS-SD (DNS-Based Service Discovery, RFC 6763), um
@@ -89,7 +95,7 @@ O anúncio do Peeroxide:
 
 ---
 
-## Passo 4: quem ouve, desconfia
+## Passo 4: todo anúncio é suspeito
 
 O mDNS não tem autenticação: qualquer aparelho na rede pode anunciar qualquer coisa.
 Então Bob trata cada anúncio como **entrada não confiável** (AC-08):
@@ -189,7 +195,7 @@ Quando Bob chega, a captura liga e o codificador recebe um pedido de **keyframe*
 
 ---
 
-## Cada quadro no fio
+## O formato de cada quadro na rede
 
 Cada quadro de vídeo viaja com um cabeçalho fixo de 22 bytes (little-endian),
 seguido do vídeo codificado em formato Annex-B:
@@ -252,7 +258,7 @@ máquinas diferentes nunca concordam.)
 
 ---
 
-## A diferença que se cancela
+## A conta que dispensa relógios sincronizados
 
 Seja `Δ` a diferença desconhecida entre os relógios de Bob e de Alice. Para o vídeo que está
 na tela e para o áudio que acabou de chegar, Bob calcula:
@@ -318,7 +324,7 @@ desiste após 5 s de silêncio. Bob volta para a lista em ~6 s.
 
 ---
 
-## Quem roda onde
+## Qual thread faz o quê
 
 | Trabalho                        | Onde roda                                               |
 |---------------------------------|---------------------------------------------------------|
@@ -337,7 +343,7 @@ CPU do que economizava** em tarefas de poucos milissegundos. Compartilhar uma ja
 
 ---
 
-## Os números
+## Números medidos
 
 Medidos na máquina de desenvolvimento (Windows 11, CPU de 12 threads, Radeon RX 6600),
 com as duas pontas na mesma máquina:
@@ -353,7 +359,7 @@ com as duas pontas na mesma máquina:
 
 ---
 
-## A conta do upload
+## Quanto de upload você precisa
 
 Na topologia em estrela, quem transmite envia **uma cópia por espectador**. O teto de cada
 preset, só de vídeo:
@@ -377,7 +383,7 @@ Pela internet, o upload de casa decide: é por isso que existe o preset **Intern
   seria inaceitável?
 - Keyframe sob demanda economiza banda. Qual é o custo quando muitos espectadores entram
   ao mesmo tempo?
-- A técnica da "diferença que se cancela" funcionaria se o relógio de Alice andasse mais
+- Essa conta funcionaria se o relógio de Alice andasse mais
   rápido que o de Bob (deriva, não só diferença fixa)? O que o agendador precisa fazer?
 
 ---

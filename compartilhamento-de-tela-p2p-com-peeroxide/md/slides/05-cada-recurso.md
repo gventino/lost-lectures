@@ -25,7 +25,7 @@ A interface tem duas metades: **Broadcast** (transmitir) à esquerda em cima,
 
 ---
 
-## Transmitir: escolhendo a fonte
+## Transmitir: o que compartilhar
 
 | Fonte           | Como é capturada                                                             |
 |-----------------|------------------------------------------------------------------------------|
@@ -68,7 +68,7 @@ nova não apaga a escolha de ninguém.
 
 ---
 
-## Transmitir: o codec, escolhido sozinho
+## Transmitir: o codec é escolhido sozinho
 
 | Situação                                          | Codec usado                                   |
 |---------------------------------------------------|-----------------------------------------------|
@@ -126,7 +126,7 @@ A solução é a lista **Mute apps**: os apps que estão tocando som, com caixin
 
 ---
 
-## Silenciar apps: por dentro
+## Como o silenciar apps funciona
 
 O loopback por processo do Windows só consegue **incluir ou excluir uma única árvore de
 processos por captura**, e "tudo menos o Peeroxide" já gasta essa exclusão. Então:
@@ -234,7 +234,7 @@ fixa, a mesma string continua valendo depois de reiniciar.
 
 ---
 
-## Estatísticas, logs e perfis
+## Estatísticas, logs e linha de comando
 
 **Estatísticas** (por cima do vídeo): quadros por segundo, kbps, tempo de decodificação,
 quadros descartados e "capture → decode" (válido só na mesma máquina, porque compara dois

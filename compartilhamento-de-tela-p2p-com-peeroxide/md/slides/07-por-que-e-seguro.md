@@ -23,7 +23,7 @@ comportar bem. Quando depende de algo, depende de criptografia, e isso é dito.
 
 ---
 
-## STRIDE em uma tabela
+## O que é STRIDE
 
 STRIDE (Shostack, 2014) é um jeito sistemático de não esquecer categorias de ameaça:
 
@@ -41,7 +41,7 @@ Como não há servidor central, **quase todas as ameaças vêm de outros aparelh
 
 ---
 
-## S: quem é você? (AC-01)
+## Spoofing: alguém se passando por outro (AC-01)
 
 **O ataque:** alguém na rede anuncia um "Alice" falso via mDNS (Multicast DNS) e passa conteúdo
 dele para Bob.
@@ -123,7 +123,7 @@ contato conhecido com ID novo. O que ele **não** consegue é anunciar "Alice" c
 
 ---
 
-## T e I: alterar e espiar (AC-03, AC-05)
+## Tampering e Information Disclosure: alterar e espiar (AC-03, AC-05)
 
 **O ataque:** alguém na mesma rede (ARP spoofing, Address Resolution Protocol, num Wi-Fi mal
 isolado) se coloca no meio e lê ou altera os quadros.
@@ -139,7 +139,7 @@ Consegue inferir que há uma transmissão, e o volume. Não consegue ver o conte
 
 ---
 
-## R: quem fez o quê? (AC-04)
+## Repudiation: quem fez o quê (AC-04)
 
 Sem servidor, não há log central. Então cada ponta guarda o seu:
 **logs de sessão com rotação diária**, dos dois lados, com início e fim de transmissões,
@@ -148,7 +148,7 @@ e cada verificação de assinatura que falhou.
 
 ---
 
-## D: derrubar (AC-07, AC-08)
+## Denial of Service: tirar do ar (AC-07, AC-08)
 
 Todo byte que chega da rede é **não confiável até prova em contrário**:
 
@@ -168,7 +168,7 @@ E o QUIC descarta pacotes não autenticados de forma barata.
 
 ---
 
-## E: capturar mais do que devia (AC-10, AC-11)
+## Elevation of Privilege: capturar mais do que devia (AC-10, AC-11)
 
 Um compartilhador de tela é, por definição, um programa com permissão para ver sua tela.
 A defesa é **nunca capturar mais do que foi escolhido, no nível da API do sistema**:
@@ -183,7 +183,7 @@ A defesa é **nunca capturar mais do que foi escolhido, no nível da API do sist
 
 ---
 
-## A lista honesta: onde ainda não é seguro
+## Onde ainda não é seguro
 
 | Lacuna                                 | Situação hoje                                                                 | Plano |
 |----------------------------------------|-------------------------------------------------------------------------------|-------|
@@ -209,10 +209,10 @@ dois codecs. Mas nada disso substitui fuzzing e isolamento, e o README diz isso.
 | Solução             | Quem carrega o vídeo              | Quem consegue ver                         | Em quem você confia                         | Custo                    | Se cair...                  |
 |---------------------|-----------------------------------|-------------------------------------------|---------------------------------------------|--------------------------|-----------------------------|
 | Discord             | Servidores do Discord             | Quem está no canal                        | Uma empresa conhecida                       | Grátis                   | Ninguém transmite           |
-| VPS grátis          | Discord, via máquina de um estranho | + o operador da VPS                     | Um desconhecido anônimo                     | "Grátis"                 | Caiu. Várias vezes          |
+| VPN grátis          | Discord, via servidor de um estranho | + o operador da VPN                    | Um desconhecido anônimo                     | "Grátis"                 | Bloqueada pelo Discord      |
 | Proxy do Equador    | Discord, via proxy público        | + o dono do proxy, para todos os apps     | Um desconhecido, com todo o seu tráfego     | "Grátis"                 | Some sem aviso              |
 | Site com anúncio    | O site (talvez)                   | O site, e quem ele quiser                 | O site, os anunciantes e os scripts deles   | Sua atenção e seus dados | A sala acaba                |
-| O ideal             | Os PCs da galera, direto          | Só quem você escolher                     | Na criptografia, e nos seus amigos          | Zero                     | Só aquela transmissão para  |
+| O ideal             | Os PCs da galera, direto          | Só quem você escolher                     | Na sua rede, seja ela LAN ou VLAN (LAN virtual), e na criptografia          | Zero                     | Só aquela transmissão para  |
 | **Peeroxide (LAN)** | **Os PCs, direto (QUIC + TLS 1.3)** | **Quem alcança sua porta na rede (até a 0.7)** | **Criptografia; ID fixado; TOFU; libde265 e OpenH264** | **Zero**        | **Só aquela transmissão para** |
 
 A distância entre "O ideal" e "Peeroxide (LAN)" tem nome e número: **AC-02** e **AC-09**.
